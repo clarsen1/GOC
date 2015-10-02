@@ -1,0 +1,10 @@
+; $Id$
+name = UObanner
+description = Prepends a preformatted UO banner to the top of your site and changes the default Drupal favicon to a UO branded one.
+version = 2.0
+package = University of Oregon
+core = 7.x
+php = 5.1
+configure = admin/config/user-interface/uobanner
+files[] = uobanner.module
+files[] = uobanner.admin.inc
