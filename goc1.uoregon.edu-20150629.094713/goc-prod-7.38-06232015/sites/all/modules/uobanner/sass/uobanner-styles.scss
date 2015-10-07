@@ -1,0 +1,178 @@
+@charset "UTF-8";
+@import "compass/css3";
+/* CSS Document */
+
+/* Desgin Variables */
+$breakpoint-desktop: 1000px;
+$breakpoint-mobile: 768px;
+$navheight-desktop: 30px;
+$navheight-mobile: 45px;
+$sidebar-button-height: 50px;
+
+/**
+ * Overrides
+ */
+ /* Prevent mobile browsers from breaking the overflow display of the sidebar menu. */
+html, body, #uobanner-wrapper, #uobanner-sidebar {
+  overflow-x: hidden;
+}
+#uobanner-wrapper, #uobanner, #uobanner-links {
+  position: relative;
+}
+/* Add transition support to moving objects. */
+#uobanner, #uobanner-wrapper, #uobanner-sidebar {
+  @include transition-property(all);
+  @include transition-duration(.5s);
+}
+
+/**
+ * UO Banner
+ */
+#uobanner-container {
+  background: #343434;
+}
+#uobanner {
+  height: $navheight-mobile;
+  display: block;
+}
+#uobanner-navmenu {
+  display: none;
+}
+.uobanner-sidebar #uobanner-navmenu {
+  float: left;
+  background: url(../images/mobile-menu.png) no-repeat scroll 10px 5px / 50px 33px;
+  height: $navheight-mobile;
+  width: 61px;
+  text-indent: -90000px;
+  cursor: pointer;
+  display: block;
+}
+#uobanner-logobox {
+  float: left;
+  height: $navheight-mobile;
+  width: 216px;
+}
+#uobanner-flag {
+  position: absolute;
+  display: none;
+  height: 179px;
+  width: 170px;
+  z-index: 10;
+  background-repeat: no-repeat;
+  background-size: 170px 179px;
+  background-image: url("../images/flag.png");
+}
+#uobanner-links {
+  display: none;
+  line-height: $navheight-desktop - 5px;
+  margin-top: -1px;
+
+  a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #CCCCCC;
+    font-weight: 700;
+    font-size: 11px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:after {
+      content: '|';
+      padding: 0 .75em;
+      color: #555555;
+      top: -3px;
+    }
+    &:last-child:after {
+      content: '';
+    }
+  }
+}
+
+@media all and (max-width: $breakpoint-mobile) {
+  .region-page-top {
+    min-height: $navheight-mobile;
+  }
+  #uobanner {
+    position: fixed;
+    background-color: #114121;
+    background-image: url(../images/uobanner_green.png);
+    background-repeat: repeat-x; 
+    width: 100%;
+    z-index: 1000;
+  }
+  #uobanner-logobox {
+    margin-top: 5px;
+  }
+}
+
+@media all and (min-width: $breakpoint-mobile + 1) {
+  #uobanner, #uobanner img, #uobanner-logobox {
+    height: $navheight-desktop;
+  }
+  #uobanner-sidebar, .uobanner-sidebar  #uobanner-navmenu {
+    display: none;
+  }
+  #uobanner-links {
+    display: block;
+  }
+}
+
+@media all and (min-width: $breakpoint-desktop) { 
+  .banner #uobanner-flag {
+    display: block;
+  }
+  .banner #uobanner-logobox {
+    display: none;
+  }
+  #uobanner-links {
+    left: 192px;
+  }
+}
+
+/* Responsive Sidebar Menu. */
+#uobanner-sidebar {
+  position: fixed;
+  display: none;
+  background: black;
+  height: 100%;
+  width: 0;
+  z-index: 100;
+  overflow-y: scroll;
+
+  a {
+    color: white;
+    display: block;
+    width: 250px;
+    height: 100%;
+    padding: 0 20px;
+    @include box-sizing(border-box);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-image: none;
+    list-style-type: none;
+  }
+
+  li {
+    margin-bottom: 1px;
+    background: #202020;
+    height: $sidebar-button-height;
+    line-height: $sidebar-button-height;
+  }
+
+  hr {
+    border: 1px solid #222222;
+    margin: 1em 0;
+  }
+}
+
+/**
+ * UOBanner Configuration Page
+ */
+#uobanner-examples {
+  margin-left: 20px;
+  float: right;
+}
