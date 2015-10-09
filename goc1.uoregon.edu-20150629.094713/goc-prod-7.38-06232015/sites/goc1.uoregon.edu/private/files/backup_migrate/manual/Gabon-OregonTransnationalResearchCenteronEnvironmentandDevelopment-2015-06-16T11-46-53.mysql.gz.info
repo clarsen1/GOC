@@ -1,0 +1,8 @@
+filename = "Gabon-OregonTransnationalResearchCenteronEnvironmentandDevelopment-2015-06-16T11-46-53"
+description = ""
+datestamp = "1434480413"
+generator = "Backup and Migrate (http://drupal.org/project/backup_migrate)"
+generatorversion = "7.x-2.x"
+sites[0][version] = "7.36"
+sites[0][name] = "Gabon-Oregon Transnational Research Center on Environment and Development"
+sites[0][url] = "https://goc.uoregon.edu/"
