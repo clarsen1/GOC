@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src = "js/jquery-1.11.3.min.js"></script>
+    <script src = "js/jquery.contenthover.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#d1').contenthover({
+            overlay_background: '#000',
+            overlay_opacity: 0.8
+            });
+        });
+    </script>
+    <style>
+        contenthover { padding:20px 20px 10px 20px; }
+        .contenthover, .contenthover h3, contenthover a { color:#fff; }
+        .contenthover h3, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0; }
+        .contenthover a.mybutton { display:block; float:left; padding:5px 10px; background:#3c9632; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+        .contenthover a.mybutton:hover { background:#34742d }
+    </style>
+</head>
+<body>
+    <img id="d1" src="photos/1.jpg" width="300" height="240" />
+<div class="contenthover">
+    <h3>Lorem ipsum dolor</h3>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum pulvinar ante quis augue lobortis volutpat. </p>
+    <p><a href="#" class="mybutton">Lorem ipsum</a></p>
+</div>
+</body>
+</html>

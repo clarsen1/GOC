@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*
+	UO Banner
+*/
+#uobanner {
+  display:block;
+  height:41px;
+  padding:0;
+  position: relative; /* This sets the parent for position: absolute; */
+  /* width attribute is set in module setting form */
+}
+#uobanner-logobox {
+  height: 38px;
+  margin: 0 auto;
+  padding: 3px 0 0 5px;
+  width: 216px;
+}
+a.uobanner-uonav:link, a.uobanner-uonav:visited {
+  color: #FFFFFF;
+  font-size: 0.8em;
+  line-height: 1em;
+  text-decoration: none;
+}
+#uobanner-links {
+  display: none;
+  color: #E9E6D6;
+  position: absolute;
+  right: 0; /* We use position absolute+right 0 instead of float to allow uobar to play more nicely. */
+  margin: 0 0 5px 5px;
+  padding: 6px 5px 4px 4px;
+  text-align: right;
+  width: 200px;
+}
+#uobanner-container-black {
+  background-color: #000;
+  background-image:url(../images/uobanner_black.png);
+  background-repeat: repeat-x;
+}
+#uobanner-container-green {
+  background-color: #114121;
+  background-image:url(../images/uobanner_green.png);
+  background-repeat: repeat-x;
+}
+#uobanner-examples {
+  margin-left: 20px;
+  float: right;
+}
+@media all and (min-width: 450px) {
+  #uobanner-logobox {
+    float: left;
+    margin: 0;
+  }
+  #uobanner-links {
+    display: block;
+  }
+}

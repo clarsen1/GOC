@@ -1,0 +1,182 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Standardizes UO banner for Dupal 7 sites.
+ */
+ 
+ /**
+ * Include module specific CSS.
+ */
+ drupal_add_css(drupal_get_path('module', 'uobanner') . '/css/uobanner-styles.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+
+/**
+ * Implements hook_menu().
+ */
+function uobanner_menu() {
+  // Module settings.
+  $items['admin/config/user-interface/uobanner'] = array(
+    'title' => 'UObanner Settings',
+    'description' => 'Choose and customize a UO banner.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uobanner_admin_settings'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'uobanner.admin.inc',
+    'file path' => drupal_get_path('module', 'uobanner'),
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function uobanner_help($path, $arg) {
+  switch ($path) {
+    case 'admin/settings/uobanner' :
+      return t('Configure this module: Configure->User Interface->UOBanner Settings.');
+
+    case 'admin/help#uobanner':
+      $output = '<p>' . t('Configure this module: Configure->User Interface->UOBanner Settings.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function uobanner_page_build(&$page) {
+
+  $uobanner = variable_get('uobanner', array()); // returns fieldset child fields as an array
+
+    // Return page width from configuration form
+    (!empty($uobanner['uobanner_page_width'])) // return uobanner_page_width from fieldset array
+                    ? $uobanner_page_width = "style='max-width: " . $uobanner['uobanner_page_width'] . "px; margin: 0 auto;'"
+                    : $uobanner_page_width = "style='max-width: 100%;'";
+    (!empty($uobanner['uobanner_color_setting']) && ($uobanner['uobanner_color_setting'] != 'green_bevel')) // return uobanner_color_setting from fieldset array
+                    ? $uobanner_color_preference = $uobanner['uobanner_color_setting']
+                    : $uobanner_color_preference = 'green';
+        switch ($uobanner_color_preference) {
+            case 'black':
+                $uobanner_type = 'uobanner-container-black';
+                break;
+            case 'green':
+                $uobanner_type = 'uobanner-container-green';
+                break;
+            default:
+                $uobanner_type = 'uobanner-container-green';
+        }
+    // Prepend UObanner to page	
+    $page['page_top']['uobanner'] = array(
+      '#markup' => "<div id=\"{$uobanner_type}\">
+                      <div id=\"uobanner\" {$uobanner_page_width}>
+                        <div id=\"uobanner-logobox\"><a href=\"http://www.uoregon.edu\"><img src=\"/" . drupal_get_path('module', 'uobanner') . "/images/uologo.png\" alt='University of Oregon.' height='35' width='216' /></a></div>
+                        <div id=\"uobanner-links\"><span class=\"uobanner-text-right\"><a href=\"http://www.uoregon.edu\" class=\"uobanner-uonav\">UO Home</a>&nbsp; | &nbsp;<a href=\"http://www.uoregon.edu/azindex/\" class=\"uobanner-uonav\">Dept Index</a></span></div>
+                      </div>
+                    </div>",
+      '#weight' => 25,
+    );
+
+  $uoclosure = variable_get('uoclosure', array()); // returns fieldset child fields as an array
+  
+  if($uoclosure) {
+    (!empty($uoclosure['uobanner_display_copyright']))
+                    ? $uoclosure_display_copyright = $uoclosure['uobanner_display_copyright']
+                    : $uoclosure_display_copyright = '';
+    (!empty($uoclosure['uobanner_closure_address']))
+                    ? $uoclosure_address = $uoclosure['uobanner_closure_address'] . '.'
+                    : $uoclosure_address = '';
+    (!empty($uoclosure['uobanner_closure_phone']))
+                    ? $uoclosure_phone = 'Phone: ' . $uoclosure['uobanner_closure_phone']
+                    : $uoclosure_phone = '';
+    (!empty($uoclosure['uobanner_closure_email']))
+                    ? $uoclosure_email = 'Email: ' . $uoclosure['uobanner_closure_email']
+                    : $uoclosure_email = '';
+    (!empty($uoclosure['uobanner_closure_year']))
+                    ? $uoclosure_year = $uoclosure['uobanner_closure_year'] . '-'
+                    : $uoclosure_year = '';
+     if ($uoclosure['uobanner_closure_year'] == strftime('%Y')) // hide year if copyright year is same as current year
+       $uoclosure_year = '';
+    (!empty($uoclosure['uobanner_closure_text_color']))
+                    ? $uoclosure_text_color = " color: " . $uoclosure['uobanner_closure_text_color'] . ";"
+                    : $uoclosure_text_color = '';
+    $uoclosure_inline_styles = "style='width: " . $uobanner['uobanner_page_width'] . "px; margin: 0 auto;";
+    $uoclosure_inline_styles .= $uoclosure_text_color;
+    $uoclosure_inline_styles .= "'";
+
+  if ($uoclosure_display_copyright == 'yes') {
+    $uoclosure_copyright = "Copyright © {$uoclosure_year}" . strftime('%Y') . " University of Oregon. All rights Reserved. ";
+  }
+  else {
+    $uoclosure_copyright = '';
+  }
+    // Append Closure to page	
+	  if ($uoclosure_display_copyright == 'yes') {
+		$page['page_bottom']['uoclosure'] = array(
+		  '#markup' => "<div id=\"uoclosure\" {$uoclosure_inline_styles}>
+							{$uoclosure_copyright}{$uoclosure_address}<br />
+							{$uoclosure_phone} {$uoclosure_email}
+						</div>",
+		  '#weight' => 25,
+		);
+	  }
+  }
+}
+
+/**
+ * Validation for uobanner_admin_settings().
+ */
+function uobanner_admin_settings_validate($form, &$form_state) {
+  
+  // Is page width numeric if field is set.
+  if (!is_numeric($form_state['values']['uobanner']['uobanner_page_width'])
+  &&(!empty($form_state['values']['uobanner']['uobanner_page_width']))) {
+    form_set_error('uobanner_page_width', 'The page width field only accepts a numeric value.');
+  }
+  // Validate closure email.
+    $mail = $form_state['values']['uoclosure']['uobanner_closure_email'];
+  if (!valid_email_address($mail)
+     &&(!empty($mail))) {
+    form_set_error('uobanner_closure_email', t('The supplied email address in the email field of the UO Closure appears to be invalid.'));
+  }
+  // Validate copyright year.
+  if (!is_numeric($form_state['values']['uoclosure']['uobanner_closure_year'])
+  &&(!empty($form_state['values']['uoclosure']['uobanner_closure_year']))) {
+    form_set_error('uobanner_closure_year', t('The copyright year field in the UO Closure only accepts a numeric value.'));
+  }
+  // Validate hexidecimal color field.
+  if (!empty($form_state['values']['uoclosure']['uobanner_closure_text_color'])) {
+    $pos    = strpos($form_state['values']['uoclosure']['uobanner_closure_text_color'], '#');
+    $length = strlen($form_state['values']['uoclosure']['uobanner_closure_text_color']);
+    if (($pos != 0) || ($length != 7)) {
+      form_set_error('uobanner_closure_text_color', t('The UO closure text color must be a valid hexidemical value preceeded by a hash symbol #. For example: #FFFFFF'));
+    }
+  }
+}
+
+/**
+ * Implementation of hook_preprocess_html().
+ */
+function uobanner_preprocess_html(&$vars) {
+  global $theme;
+  if ($theme != 'base' && theme_get_setting('default_favicon')) {
+    drupal_add_html_head_link(array('rel' => 'shortcut icon', 'href' => drupal_get_path('module', 'uobanner') . '/images/favicon.ico', 'type' =>'image/vnd.microsoft.icon')); // provide new default path to default Drupal favicon.
+  }
+}
+
+/**
+ * Implementation of hook_html_head_alter().
+ */
+function uobanner_html_head_alter(&$vars) {
+  global $theme;
+  if ($theme != ' base') {
+    if (theme_get_setting('default_favicon')) {
+      foreach ($vars as $key => $value) {
+        if (strpos($key, 'misc/favicon.ico') !== FALSE) {
+          unset($vars[$key]);
+        }
+      }
+    }
+  }
+}
