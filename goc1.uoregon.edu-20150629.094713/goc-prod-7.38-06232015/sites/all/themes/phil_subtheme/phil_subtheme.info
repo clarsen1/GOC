@@ -15,6 +15,7 @@ regions[homequotes]     = Home Quotes
 regions[highlights]     = Highlight Tiles
 regions[content]        = Content
 regions[content_top]    = Content Top
+regions[updates]	= Updates
 regions[help]           = Help
 regions[footer_first]   = First Bottom
 regions[footer_second]  = Second Bottom

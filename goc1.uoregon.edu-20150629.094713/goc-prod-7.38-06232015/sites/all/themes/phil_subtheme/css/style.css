@@ -638,7 +638,7 @@ li.sfHover > a > .sf-sub-indicator {
 }
 
 
-@media (max-width:850px){
+@media (max-width:1000px){
     #header-image img{
         width: 1050px;
         height:auto;
@@ -954,8 +954,8 @@ li a.active{color:white; text-decoration: underline;}
   -moz-transition: all 0.2s ease-in-out 0s;
   border-radius: 5px;
   cursor: pointer;
-  background: none repeat scroll 0 0 #B81007;
-  border: 1px solid #9D4D2C;
+  background: none repeat scroll 0 0 #5fa128;;
+  border: 1px solid #5fa128;
   color: #fff;
   padding: 4px 6px;
   text-shadow: 1px 1px 1px #300033;
@@ -965,7 +965,7 @@ li a.active{color:white; text-decoration: underline;}
 }
 
 .form-submit:hover {
-  background: none repeat scroll 0 0 #CF5240;
+  background: none repeat scroll 0 0 #5fa128;;
 }
 
 input.form-checkbox, input.form-radio {
@@ -1334,6 +1334,7 @@ span.text-content span a:hover {
 /* JQUERY CONTENT HOVER OVERLAYS
 /*-------------------------------------------*/
 
+
 .image{
     width: 33.33vw;
     height: 33.33vw;
@@ -1409,6 +1410,14 @@ span.text-content span a:hover {
         width: 100vw;
         height: 25vh;
     }
+    
+    .ch_hover{
+        top: 0% !important;
+    }
+    
+    .ch_hover p{
+        display: none;
+    }
 }
 
 #block-views-highlights-block > h2 {
@@ -1466,7 +1475,6 @@ span.text-content span a:hover {
   top: 50%;
   left: 10%;
   font-size: 3rem;
-    
 }
 
 .top h2 {
@@ -1500,4 +1508,76 @@ span.text-content span a:hover {
     width: 80vw;
     margin: 0 auto;
     margin-bottom: 2em;
+}
+
+#partners {
+    width: 80vw;
+    margin: 0 auto;
+    margin-bottom: 2em;
+    color: black;
+}
+
+/*-------------------------------------------*
+/* UPDATES VIEW FORMATTING
+/*-------------------------------------------*/
+#update-wrap{
+    width: 100vw;
+    background: #FFF;
+}
+
+#updates{
+    background: #FFF;
+    color: black;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+#updates h2{
+    color: black;
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 8px;
+}
+
+/*-------------------------------------------*
+/* BASIC PAGE FORMATTING
+/*-------------------------------------------*/
+
+
+.basic{
+    padding-top: 56px;
+}
+
+.basic h2{
+    margin-left: 10%;
+}
+
+@media(max-width: 768px){
+   .basic{
+        padding-top: 112px;
+   } 
+}
+
+/*-------------------------------------------*
+/* CONTACT PAGE FORMATTING
+/*-------------------------------------------*/
+
+.form-wrap{
+    position: relative;
+    display: inline-block;
+    background: #FFF;
+    color: black !important;
+    width: 100vw;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0 auto;
+}
+
+.form{
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.node-webform > .form-item{
+    display: none;
 }
