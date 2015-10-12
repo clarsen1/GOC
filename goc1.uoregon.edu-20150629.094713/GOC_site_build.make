@@ -61,8 +61,8 @@ projects[business_responsive_theme][version] = "2.0"
 
 ; Please fill the following out. Type may be one of get, git, bzr or svn,
 ; and url is the url of the download.
-projects[“phil_subtheme”][download][type] = ""
-projects[“phil_subtheme”][download][url] = ""
+projects[“phil_subtheme”][download][type] = "git"
+projects[“phil_subtheme”][download][url] = "https://github.com/philkrie/business_subtheme.git"
 projects[“phil_subtheme”][type] = "theme"
 projects[“phil_subtheme”][version] = "1.11"
 
