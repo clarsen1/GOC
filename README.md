@@ -18,3 +18,6 @@ in the block.
 
 The "Give/Donne" page:
 This page has not yet been created, as it did not exist in the old site. Please rectify.
+
+KNOWN ISSUES:
+Pages are not formatting properly when Safari and Firefox zoom in or zoom out of the page. Try to reproduce.
