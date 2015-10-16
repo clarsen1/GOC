@@ -107,8 +107,8 @@
   <?php endif; ?>
   
   <?php if ($page['highlights']): ?>
-    <div id="home-highlights" class="clearfix">
-     <div><?php print render($page['highlights']); ?></div>
+    <div id="home-highlights">
+     <?php print render($page['highlights']); ?>
     </div>
   <?php endif; ?>
   
