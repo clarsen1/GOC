@@ -61,8 +61,8 @@ projects[business_responsive_theme][version] = "2.0"
 
 ; Please fill the following out. Type may be one of get, git, bzr or svn,
 ; and url is the url of the download.
-projects[“phil_subtheme”][download][type] = ""
-projects[“phil_subtheme”][download][url] = ""
+projects[“phil_subtheme”][download][type] = "git"
+projects[“phil_subtheme”][download][url] = "https://github.com/philkrie/business_subtheme.git"
 projects[“phil_subtheme”][type] = "theme"
 projects[“phil_subtheme”][version] = "1.11"
 
@@ -71,18 +71,21 @@ projects[uobanner][download][url] = "http://it.uoregon.edu/system/files/uobanner
 projects[uobanner][type] = "module"
 
 ; Libraries
-libraries[ckeditor][download][type] = “get”
-libraries[ckeditor][download][url] = "http://ftp.drupal.org/files/projects/ckeditor-7.x-1.16.tar.gz"
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+libraries[ckeditor][download][type] = "file"
+libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.6.1/ckeditor_3.6.6.1.zip"
 libraries[ckeditor][directory_name] = "ckeditor"
 libraries[ckeditor][type] = "library"
-
-libraries[jquery.cycle][download][type] = “get”
-libraries[jquery.cycle][download][url] = "http://ftp.drupal.org/files/projects/jquery_plugin-7.x-1.0.tar.gz"
+ 
+libraries[json2][type] = "library"
+libraries[json2][download][type] = "file"
+libraries[json2][download][url] = "https://raw.githubusercontent.com/douglascrockford/JSON-js/master/json2.js"
+ 
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+libraries[jquery.cycle][download][type] = "file"
+libraries[jquery.cycle][download][url] = "http://malsup.github.com/jquery.cycle.all.js"
 libraries[jquery.cycle][directory_name] = "jquery.cycle"
 libraries[jquery.cycle][type] = "library"
-
-libraries[json2][download][type] = “get”
-libraries[json2][download][url] = "http://ftp.drupal.org/files/projects/json2-7.x-1.1.tar.gz"
-libraries[json2][directory_name] = "json2"
-libraries[json2][type] = "library"
 
