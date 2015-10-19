@@ -579,9 +579,11 @@ li.sfHover > a > .sf-sub-indicator {
 
 .footer-box-left {
   float: left;
-  width: 25vw;
+  width: 25%;
   background: black;
   color:white;
+    margin-bottom: 10px;
+    margin-top: 10px;
 
 }
 
@@ -591,6 +593,7 @@ li.sfHover > a > .sf-sub-indicator {
   background: black;
     color:white;
     margin-bottom: 10px;
+    margin-top: 10px;
 
 }
 
@@ -1344,7 +1347,7 @@ span.text-content span a:hover {
 
 .image img {
     width: auto;
-    height: 33.33vw;
+    height: 100%;
     overflow-x: hidden;
 }
 
@@ -1504,20 +1507,20 @@ span.text-content span a:hover {
     display: inline-block;
     background: #FFF;
     color: black !important;
-    width: 100vw;
+    width: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
 }
 
 
 .writing p {
-    width: 80vw;
+    width: 80%;
     margin: 0 auto;
     margin-bottom: 2em;
 }
 
 #partners {
-    width: 80vw;
+    width: 80%;
     margin: 0 auto;
     margin-bottom: 2em;
     color: black;
@@ -1527,14 +1530,19 @@ span.text-content span a:hover {
 /* UPDATES VIEW FORMATTING
 /*-------------------------------------------*/
 #update-wrap{
-    width: 100vw;
+    width: 100%;
     background: #FFF;
+}
+
+#update-wrap .views-field-field-image > div.field-content{
+    border-top: 1px solid black;
+    padding-top: 10px;
 }
 
 #updates{
     background: #FFF;
     color: black;
-    width: 80vw;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -1573,14 +1581,14 @@ span.text-content span a:hover {
     display: inline-block;
     background: #FFF;
     color: black !important;
-    width: 100vw;
+    width: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
     margin: 0 auto;
 }
 
 .form{
-    width: 80vw;
+    width: 80%;
     margin: 0 auto;
 }
 

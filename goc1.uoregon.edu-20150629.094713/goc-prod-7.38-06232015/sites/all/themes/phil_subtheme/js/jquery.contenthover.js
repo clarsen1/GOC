@@ -80,7 +80,16 @@
 					if (settings.overlay_y_position=='top') { 
 						ch_hover_css.top = '33.33vw';
 					} else if (settings.overlay_y_position=='bottom') {
-						ch_hover_css.top = 0 + 'px';
+                        var width = $(window).width();
+                        var height = $(window).height();
+                        if(width > 930){
+                                width = width / 3;
+                                width = width*.4;
+                                ch_hover_css.top = width + 'px';
+                            } else {
+                                ch_hover_css.top = 0 + 'px';
+                            }
+						
 					} else {
 						ch_hover_css.top = (h/2 - overlay_h/2)+'px';
 					}
@@ -132,6 +141,17 @@
                                 height = height/4;
                                 height = height - 55;
                                 initial_css = { top: height + 'px' };
+                                
+                            }
+                            
+                            width = $(window).width();
+                            height = $(window).height();
+                            if(width > 930){
+                                width = width / 3;
+                                width = width*.4;
+                                ch_hover_css.top = width + 'px';
+                            } else {
+                                ch_hover_css.top = 0 + 'px';
                             }
                             
                             $ch_hover.css('z-index',settings.zindex+1).css(initial_css);
