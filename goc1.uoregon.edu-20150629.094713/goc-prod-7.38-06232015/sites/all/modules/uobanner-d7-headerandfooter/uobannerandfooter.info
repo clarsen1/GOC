@@ -1,0 +1,12 @@
+; $Id$
+name = UO Banner and Footer
+description = Adds a preformatted UO banner and footer to your site.  Also changes the default Drupal favicon to a UO branded one.
+version = 3.7
+package = University of Oregon
+core = 7.x
+php = 5.2.5
+configure = admin/config/user-interface/uobannerandfooter
+files[] = uobannerandfooter.module
+files[] = uobannerandfooter.admin.inc
+stylesheets[all][] = css/uobanner-styles-responsive.css
+scripts[] = js/uobannerandfooter.js

@@ -1,0 +1,612 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"off",
+				"offsetWidth"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"map",
+				"mapMaterial"
+			],
+			[
+				"orb",
+				"orbitControls"
+			],
+			[
+				"set",
+				"id_set"
+			],
+			[
+				"check",
+				"set_check"
+			],
+			[
+				"recieve",
+				"recieving_s2s_leave"
+			],
+			[
+				"request",
+				"request_s2s_leave"
+			],
+			[
+				"get",
+				"get_rand"
+			],
+			[
+				"recievi",
+				"recieving_say"
+			],
+			[
+				"servers",
+				"server_channels"
+			],
+			[
+				"sockaddr",
+				"sockaddr_in"
+			],
+			[
+				"seed",
+				"seed_randgenerator"
+			],
+			[
+				"subs",
+				"subscribed_channels"
+			],
+			[
+				"rec",
+				"recieving_leave"
+			],
+			[
+				"next_",
+				"next_channel"
+			],
+			[
+				"channel",
+				"channel_name"
+			],
+			[
+				"size_h",
+				"size_who_array"
+			],
+			[
+				"MAX",
+				"CHANNEL_MAX"
+			],
+			[
+				"push_user",
+				"push_user_to_channel_list"
+			],
+			[
+				"recieving",
+				"recieving_join"
+			],
+			[
+				"push",
+				"push_user_to_channel_list"
+			],
+			[
+				"req",
+				"req_channel"
+			],
+			[
+				"user",
+				"user_name"
+			],
+			[
+				"delete_user",
+				"delete_user_from_channel_list"
+			],
+			[
+				"delete",
+				"delete_user_from_user_list"
+			],
+			[
+				"txt_ch",
+				"txt_channel"
+			],
+			[
+				"soc",
+				"sockaddr"
+			],
+			[
+				"row",
+				"rowZero"
+			],
+			[
+				"j",
+				"j"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"txt",
+				"txt_again"
+			],
+			[
+				"file",
+				"file_again"
+			],
+			[
+				"sort",
+				"sorting_list"
+			],
+			[
+				"val",
+				"val	SML 'val' declaration with type"
+			],
+			[
+				"interp",
+				"interp_lazy_static"
+			],
+			[
+				"RES_",
+				"RES_CLOSURE"
+			],
+			[
+				"RES",
+				"RES_CLOSURE"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 367.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 521.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Phillip/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/map-proto/src/js/globe/webgl-globe.jsx",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/map-proto/src/js/globe/index.html",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/map-proto/src/www/index.html",
+		"/Users/Phillip/Documents/u:page/www/src/html/profile.html",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/TrackballControls.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/three.min.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/tessalator3d.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/stats.min.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/Projector.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/Detector.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/country_data.js",
+		"/Users/Phillip/Google Drive/Web Dev/UOStudyAbroadMap/country_selector/js/app.js",
+		"/Users/Phillip/Documents/u:page/www/src/coffee/directives/directives.coffee",
+		"/Users/Phillip/Documents/u:page/www/src/less/profile.less",
+		"/Users/Phillip/Documents/u:page/www/gulpfile.coffee",
+		"/Users/Phillip/Documents/u:page/www/src/coffee/explore.coffee",
+		"/Users/Phillip/Desktop/CONVERSION/js/OrbitControls.js",
+		"/Users/Phillip/Desktop/CONVERSION/vendor/OrbitControls.js",
+		"/Users/Phillip/Desktop/CONVERSION/orbitcontrols.js",
+		"/Users/Phillip/Desktop/CONVERSION/js/Three62.js",
+		"/Users/Phillip/Google Drive/Web Dev/react/react-0.14.3/src/helloworld.js",
+		"/Users/Phillip/Google Drive/Web Dev/react/react-0.14.3/helloworld.html",
+		"/Users/Phillip/Google Drive/Web Dev/react/react-tutorial-master/server.php",
+		"/Users/Phillip/Google Drive/Web Dev/react/react-tutorial-master/public/index.html",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/hubs.json",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/duckchat.h",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/start.sh",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/linked_list.c",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/linked_list.h",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/server.c",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/client.c",
+		"/Users/Phillip/Downloads/DuckChat/Source/server.c",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/raw.h",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/raw.c",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/server_tut.c",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/client_tut.c",
+		"/Users/Phillip/Google Drive/Web Dev/GINIEWeb/RIPE/GetAllRIPEData.py",
+		"/Users/Phillip/Google Drive/work-samples/C/Duplicate Address Finder/finddupl.c",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/def",
+		"/Users/Phillip/Google Drive/Fall 2015/CIS 432 (Networks)/Programming Projects/Duck Chat/tutorial.c",
+		"/Users/Phillip/Google Drive/work-samples/C/Process Scheduler/usps.c",
+		"/Users/Phillip/Downloads/import/import.php",
+		"/Users/Phillip/Desktop/filenotes.txt",
+		"/Users/Phillip/Google Drive/Web Dev/phil_subtheme/css/style.css",
+		"/Users/Phillip/Google Drive/Web Dev/PandaBook/php/listentries.php",
+		"/Users/Phillip/Google Drive/Web Dev/PandaBook/php/addentry.php",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/RIPEStopper.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/RIPERestLauncher.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/RIPEProbeSelector.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/RIPEParser.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/RIPECurlFile.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/RIPECampgain.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/GetAllRIPEData.py",
+		"/Users/Phillip/Google Drive/ONRG/RIPE/dataBaseManager.py",
+		"/Users/Phillip/Desktop/BinarySearch.java",
+		"/Users/Phillip/Google Drive/ONRG/Scripts/top20ASvectorimport.sh",
+		"/Users/Phillip/Google Drive/ONRG/Scripts/top18ASvectorToESRI.sh",
+		"/Users/Phillip/Google Drive/ONRG/Scripts/top18ASheatmaptojpg.sh",
+		"/Users/Phillip/Google Drive/ONRG/Scripts/top18ASheatmaptojpg.4.sh",
+		"/Users/Phillip/Google Drive/ONRG/Scripts/top18ASheatmapstd.3.sh",
+		"/Users/Phillip/Google Drive/ONRG/Scripts/firstgrassscript.sh",
+		"/Users/Phillip/Desktop/goc1.uoregon.edu-20150629.094713/goc-prod-7.38-06232015/sites/all/modules/uobanner/uobanner.admin.inc",
+		"/Users/Phillip/Google Drive/Coding Exercises/stack.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/queue.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/31_singlearraythreestacks.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/27_linkedpalindrome.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/26_detectcorruption.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/25_listaddition.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/24_partition.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/23_deletenodedirectaccess.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/22_kthtolastelement.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/21_remduplicates.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/node.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/25_listaddition",
+		"/Users/Phillip/Google Drive/Coding Exercises/22_kthtolastelement",
+		"/Users/Phillip/Google Drive/Coding Exercises/8_isrotation.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/7_nullifyzero.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/6_90degreematrix.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/5_strcompression.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/4_replacespace.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/3_permstr.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/2_reversestr.java",
+		"/Users/Phillip/Google Drive/Coding Exercises/1_uniqchar.java",
+		"/Users/Phillip/Google Drive/ONRG/Data/heatmapscript.sh",
+		"/Users/Phillip/Google Drive/ONRG/Data/heatscript.sh",
+		"/Users/Phillip/Desktop/goc1.uoregon.edu-20150629.094713/goc-prod-7.38-06232015/sites/all/themes/phil_subtheme/styles.css",
+		"/Users/Phillip/Downloads/optimized_contents/MANIFEST",
+		"/Users/Phillip/Desktop/Gabon-Oregon/goc1.uoregon.edu-20150629.094713/config-include/includes/global.inc",
+		"/Users/Phillip/Google Drive/Scripts/image-min.js",
+		"/Users/Phillip/Library/Application Support/Sublime Text 3/Packages/User/var Imagemin = require('imagemin');",
+		"/Users/Phillip/Google Drive/Web Dev/uomocktrial/ViewerJS/compatibility.js",
+		"/Users/Phillip/Google Drive/Web Dev/GINIEWeb/keyparser.py",
+		"/Users/Phillip/Downloads/keys/germany-cap",
+		"/Users/Phillip/Downloads/keys/germany",
+		"/Users/Phillip/Downloads/keys/3257-germany.keys",
+		"/Users/Phillip/Downloads/keys/209.keys",
+		"/Users/Phillip/Downloads/keys/2914-types.keys",
+		"/Users/Phillip/Downloads/keys/1755.keys",
+		"/Users/Phillip/Downloads/keys/1239.keys",
+		"/Users/Phillip/Downloads/keys/1221.keys",
+		"/Users/Phillip/Downloads/keys/1221-media.keys",
+		"/Users/Phillip/Downloads/keys/Makefile",
+		"/Users/Phillip/Downloads/keys/Makefile.am",
+		"/Users/Phillip/Google Drive/Learning/ex17.rb",
+		"/Users/Phillip/Google Drive/Learning/ex16.rb",
+		"/Users/Phillip/Google Drive/Learning/ex15.rb",
+		"/Users/Phillip/Google Drive/Learning/ex15_sample.txt",
+		"/Users/Phillip/Google Drive/Learning/ex13.rb",
+		"/Users/Phillip/Google Drive/Learning/ex14.rb",
+		"/Users/Phillip/Google Drive/Learning/ex12.rb",
+		"/Users/Phillip/Google Drive/Web Dev/GINIEWeb/colon-parser.py",
+		"/Users/Phillip/Google Drive/Learning/ex11.rb",
+		"/Users/Phillip/Google Drive/Web Dev/GINIEWeb/english-parser.py",
+		"/Users/Phillip/Google Drive/Learning/ex7.rb",
+		"/Users/Phillip/Google Drive/Learning/ex6.rb",
+		"/Users/Phillip/Google Drive/Learning/ex4.rb",
+		"/Users/Phillip/Google Drive/Learning/ex3.rb",
+		"/Users/Phillip/Google Drive/Learning/ex1.rb",
+		"/Users/Phillip/Google Drive/Web Dev/GINIEWeb/parsescript.py",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/assn6.sml",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/pls.sml",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/10.sml",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/sml5.sml",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/assn7/satisfy.sml",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/assn7/interp.sml",
+		"/Users/Phillip/Google Drive/Spring 2015/CIS 425 Prog Languages/Programs/assn7/interpExamples.sml",
+		"/Users/Phillip/problem2.hs"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<current file>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Tween",
+			"camera",
+			"20",
+			".955",
+			".95",
+			"THREE",
+			"COUNTRYDATA",
+			"globe",
+			"country_data",
+			"DAT",
+			"loading",
+			"base_globe",
+			"position",
+			"animate()",
+			"render()",
+			"mesh.position",
+			"his.points.morphTargetDictionary",
+			"mesh.position",
+			"animated",
+			"addData",
+			"addPoint",
+			"scene",
+			"distance",
+			"mousedown",
+			"zoom",
+			"distanceTarget",
+			"curZoomSpeed",
+			"zoom",
+			"sphere",
+			"scene.add",
+			"sphere",
+			"onDocumentKeyDown",
+			"target",
+			"e.add",
+			"container",
+			"eventListener",
+			"addeventListener",
+			"eventlistener",
+			"eventlistened",
+			"container",
+			"globe",
+			"loading",
+			"text-transform",
+			"start_app(",
+			"exploreApp",
+			"countryColorMap",
+			"lookupCOntext",
+			"getContext",
+			"mapContext",
+			"getContext",
+			"lookupContext",
+			"removableCubes",
+			"ReactThree.Mesh",
+			"position",
+			"state",
+			"g_applicationstate",
+			"push",
+			"raycaster",
+			"mesh",
+			"_",
+			"_.",
+			"onClick",
+			"click",
+			"projector",
+			"camera",
+			"click",
+			"globefragmentShader",
+			"FragmentShader",
+			"globeVertexShader",
+			"mesh",
+			"zoom",
+			"camera",
+			"maincamera",
+			"controls",
+			"boxgeometry",
+			"cupcake",
+			"globe",
+			"scene",
+			"babel",
+			"onCommentSubmit",
+			"commentForm",
+			"commentFrom",
+			"node_in_location",
+			"time",
+			"text_who",
+			"sockaddr",
+			"sender",
+			"{}",
+			"Common",
+			"get_rand",
+			"sendsize",
+			"set_check",
+			"Common",
+			"100",
+			"id_set",
+			"set_check",
+			"REQ_S2S_SAY",
+			"set_check",
+			"rc",
+			"S2S_LEAVE",
+			"leave",
+			"common",
+			"send Text Sa",
+			"channel",
+			"channel_list",
+			"send Text",
+			"send Text Say2",
+			"send Text Say",
+			"text Say",
+			"send Text Say",
+			"send S2S Say",
+			"S2S Say",
+			"servers_addr",
+			"send S2S Join",
+			"get_rand",
+			"S2S",
+			"ip",
+			"server",
+			"sendto",
+			"sendsize",
+			"iter",
+			"rand",
+			"subscribed_channels",
+			"map",
+			"malloc",
+			"sa_data",
+			"free",
+			"ree"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"interp_lazy"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 68.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "README.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/pohlig.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 256.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

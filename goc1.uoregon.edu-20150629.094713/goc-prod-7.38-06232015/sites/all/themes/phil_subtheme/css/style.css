@@ -30,7 +30,88 @@ time, mark, audio, video {
 
 body, html{
     background: black;
+
 }
+
+@-webkit-keyframes fadeIn {
+  from {
+    -webkit-transform: translateY(20px);
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -o-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    -webkit-transform: translateY(20px);
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -o-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  from {
+    -webkit-transform: translateY(20px);
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -o-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    -webkit-transform: translateY(20px);
+    -moz-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -o-transform: translateY(20px);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+:not(#header-image *) {
+  -webkit-animation: fadeIn 500ms ease-in;
+  -moz-animation: fadeIn 500ms ease-in;
+  animation: fadeIn 500ms ease-in;
+}
+
 
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section { 
@@ -310,7 +391,7 @@ h4 a {
   top: 0px;
   background-color:rgba(240,240,240,0.9);  
   z-index: 6;   
-  height: 56px;
+  height: 66px;
 }
 
 #navigation a {
@@ -319,6 +400,11 @@ h4 a {
   -o-transition: background 0.2s ease-in-out;
   -ms-transition: background 0.2s ease-in-out;
   transition: background 0.2s ease-in-out;
+}
+
+#main-menu {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /*** ESSENTIAL Navigation Style ***/
@@ -379,12 +465,11 @@ h4 a {
 #main-menu .menu {
   float: right;
   margin-bottom: 1em;
-  margin-right: 5vw;
 }
 
 #main-menu .menu a {
   color: #666;
-  padding: 1.5em 15px;
+  padding: 1.8em 15px;
   text-decoration: none;
   margin-top: 2px;
 }
@@ -445,21 +530,14 @@ li.sfHover {
 }
 
 .first.leaf > a{
-    display: inline-block;
-    text-indent: -9999em;
-    background-image: url("../GO_G_Small2.png");
-    background-repeat: no-repeat;
-    width: 45px;
-    margin-top: 2px;
+    
 }
 
 .first.leaf > a:hover,
 .first.leaf> a:focus,
 .first.leaf> a:active,
 .first.leaf > a.active{
-    background: transparent !important;
-    background-image: url("../GO_G_Small2.png") !important;
-    background-repeat: no-repeat !important;    
+
 }
 
 .sf-sub-indicator {
@@ -535,7 +613,7 @@ li.sfHover > a > .sf-sub-indicator {
   font-size: 16px;
   border-top: 1px solid #EEE;
   border-bottom: 1px solid #EEE;
-  padding: 20px;
+  padding: 40px;
 }
 
 #home-quote h2 {
@@ -555,8 +633,11 @@ li.sfHover > a > .sf-sub-indicator {
 /* Footer
 /*-------------------------------------------*/
 #footer-wrap{
-	padding-top: 40px;
+	 padding-top: 40px;
     background:black;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 #footer-saran{
@@ -570,31 +651,27 @@ li.sfHover > a > .sf-sub-indicator {
 }
 
 .footer-box {
-  float: left;
-  width: 215px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 40px;
+  padding-bottom: 50px;
   background: black;
+  text-align: center;
+  margin-top: 5;
+  background: url(/sites/all/themes/phil_subtheme/GO_G_Small2.png) center no-repeat;
+  background-position: 50% 100%;
 }
 
-.footer-box-left {
-  float: left;
-  width: 25%;
-  background: black;
-  color:white;
-    margin-bottom: 10px;
-    margin-top: 10px;
-
+.footer-box a{
+  color: #bbb;
 }
 
-.footer-box-right {
-  float: right;
-  width: 215px;
-  background: black;
-    color:white;
-    margin-bottom: 10px;
-    margin-top: 10px;
+.footer-box a:hover{
+  color: #fdcd07;
+}
 
+.language-switcher-locale-url{
+  list-style-type: none;
 }
 
 .footer-box img {
@@ -617,20 +694,22 @@ li.sfHover > a > .sf-sub-indicator {
 /* Front-page Slider 
 /*-------------------------------------------*/
 #header-image img{
-    position:absolute;
+    position: absolute;
     width: 100%;
-    height:auto;
+    height: auto;
+    bottom: -90px;
 }
 
 #header-image .gabon_logo img{
-    position:absolute;
-    margin:0;
-    left: 50%;
+    position: relative;
+    margin: 0 auto;
+    margin-left: 50%;
     opacity: .7;
-    margin-right:50%;
-    transform: translate(-50%, 70%);
+    margin-right: 50%;
+    transform: translate(-50%);
     height: 200px;
     width: auto;
+    bottom: -130px;
 }
 
 #header-image{
@@ -654,7 +733,6 @@ li.sfHover > a > .sf-sub-indicator {
     color:white;
     border: 0;
     height: 35%;
-    
 }
 
 #home-quote .content{
@@ -671,46 +749,43 @@ li.sfHover > a > .sf-sub-indicator {
     margin: 0;
 }
 
-#home-quote .quote{
-    float:left;
-    width: 60%;
-}
-
-#home-quote .big-button{
-    border: 6px solid white;
-    padding: 8px;
-    float: left;
-    margin-left: 5vw;
-    margin-top: 1vh;
-    width: 25%;
-    margin-bottom: 30px;
-    
-}
 
 #home-quote .big-button:hover{
     background: #4E9634;
-    
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
 }
 
-@media (max-width: 950px){
-    #home-quote{
-    }
-    
-    #home-quote .quote{float: none;
-        width: 90%;
-        margin: 0 auto;
-        float:none;
-    }
-    
-    #home-quote .big-button{
-        border: 10px solid white;
-        padding: 8px;
-        margin: 10px auto;
-        width: 50%;
-        float:none;
-    }
 
+#home-quote .quote{float: none;
+    width: 90%;
+    margin: 0 auto;
+    float:none;
 }
+    
+#home-quote .big-button{
+    border: 2px solid white;
+    padding: 8px;
+    margin: 10px auto;
+    width: 30%;
+    float:none;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+
 
 .main_view {
   float: left;
@@ -1265,9 +1340,6 @@ h3.comment-title a{
   font-size: 16px;
 }
 
-.social_block{
-    padding-left: 10px;
-}
 
 #fb-icon{
     float:left;
@@ -1349,6 +1421,7 @@ span.text-content span a:hover {
     width: auto;
     height: 100%;
     overflow-x: hidden;
+    position: absolute;
 }
 
 .image > h3 {
@@ -1445,12 +1518,6 @@ span.text-content span a:hover {
 /*-------------------------------------------*
 /* UO BANNER CHANGES
 /*-------------------------------------------*/
-@media (max-width: 768px){
-
-    #navigation{
-        top:42px;
-    }
-}
 
 #uobanner-links{
     line-height: 3em;
@@ -1475,6 +1542,10 @@ span.text-content span a:hover {
 /* PROJECT CONTENT TYPE FORMATTING
 /*-------------------------------------------*/
 
+.block.block-views> h2 {
+  display: none;
+}
+
 .mid h2 {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
@@ -1492,7 +1563,34 @@ span.text-content span a:hover {
   padding: 20px;
 }
 
+.writing h1 {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 40px;
+    max-width: 1200px;
+}
 
+.writing .proj-img{
+    width: 20%;
+    float:left;
+    margin-top: 12px;
+}
+
+.writing .proj-info{
+    width: 75%;
+    float: right;
+}
+
+.writing .proj-container{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+}
 
 .module {
   width: 100%;
@@ -1510,13 +1608,15 @@ span.text-content span a:hover {
     width: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
+    margin-bottom: -6px;
 }
 
 
-.writing p {
+.writing > p {
     width: 80%;
     margin: 0 auto;
     margin-bottom: 2em;
+    max-width: 1200px;
 }
 
 #partners {
@@ -1539,6 +1639,7 @@ span.text-content span a:hover {
     padding-top: 10px;
 }
 
+
 #updates{
     background: #FFF;
     color: black;
@@ -1559,7 +1660,7 @@ span.text-content span a:hover {
 
 
 .basic{
-    padding-top: 56px;
+    padding-top: 66px;
 }
 
 .basic h2{
@@ -1590,6 +1691,7 @@ span.text-content span a:hover {
 .form{
     width: 80%;
     margin: 0 auto;
+    max-width: 1200px;
 }
 
 .node-webform > .form-item{

@@ -1,0 +1,163 @@
+$gutter-width:  30px;
+
+/**
+ * Article listings have been deprecated and replaced with Badges as of NOV 2015
+ */
+%listing-row, .listing-row {
+  padding-bottom: $gutter-width;
+  width: 100%;
+
+  /* Ensure clearfix since we have a floated image. */
+  &:after {
+    content: ".";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0;
+  }
+
+  /* Ensure that there is proper padding for photos in left column. */
+  .photo, .listing-left.photo {
+    margin-right: $gutter-width / 2;
+  }
+
+  h2 {
+    margin-top: $gutter-width / 3;
+  }
+}
+.listing-row.listing-small {
+  padding-bottom: $gutter-width / 2;
+}
+
+%listing-left, .listing-left {
+  float: left;
+  display: inline-block;
+  margin-right: $gutter-width / 2;
+  padding: 4px;
+  line-height: 0;
+}
+
+.small .listing-left {
+  float: none;
+  display: block;
+  margin: 0 auto;
+
+  .sidebars & {
+    float: left;
+    margin-right: 5px;
+  }
+}
+
+%listing-right, .listing-right {
+  display: table-row;
+}
+
+/* Prevent Listing row and grid item margin and padding from stacking. */
+.grid-item.listing-row {
+  padding-bottom: 0;
+}
+
+/* Listing Updates */
+.listing-row {
+  .listing-title a {
+    color: black;
+  }
+  .listing-title a:link {
+    text-decoration: none;
+  }
+  .listing-title a:hover {
+    text-decoration: underline;
+  }
+}
+
+/*
+ * Badge Left/Right Regions have been deprecated as of NOV 2015. Editors can use badge-photo-left 
+ * and badge-photo-right to easily float photos in a badge.
+ *
+ * This change was made to simplify the layout options. Similar results can be achieved
+ * with grid-40-60-split and grid-60-40-split.
+ */
+ /* Wrappers for 2 column badges. */
+.badge-left {
+  float: left;
+  padding-right: $gutter-width;
+  margin-bottom: $gutter-width;
+  line-height: 0;
+}
+.small .badge-left {
+  float: none;
+  display: block;
+  margin: 0 auto;
+}
+.badge-small .badge-left {
+  padding-right: $gutter-width / 2;
+  margin-bottom: $gutter-width / 2;
+}
+
+/* 
+ * Old Badge Syntax is deprecated as of NOV 2015. These same classes can still be used with the prefix
+ * badge- before each one. This new syntax reduces the possiblity of future namespace collisions.
+ */
+
+.badge {
+  .label, .photo, .title, .teaser, .links {
+    margin-bottom: $gutter-width / 5;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .label {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: bold;
+    color: #00704A;
+    text-transform: uppercase;
+  }
+
+  .photo {
+    width: 100%;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333333;
+
+    a {
+      color: #333333;
+    }
+  }
+
+  .teaser {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333333;
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .links {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .list {
+    .label {
+      display: inline;
+      font-weight: bold;
+      color: #666666;
+    }
+
+    p {
+      display: inline;
+      margin: 0;
+    }
+  }
+}

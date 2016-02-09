@@ -90,15 +90,10 @@
 
     <div class="menu_wrapper">
       <nav id="main-menu"  role="navigation">
-        <a class="nav-toggle" href="#">Navigation</a>
+        <a class="nav-toggle" href="#">Menu</a>
         <div class="menu-navigation-container">
-          <?php 
-          if (module_exists('i18n')) {
-            $main_menu_tree = i18n_menu_translated_tree(variable_get('menu_main_links_source', 'main-menu'));
-          } else {
-            $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
-          }
-          print drupal_render($main_menu_tree);
+          <?php $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu')); 
+            print drupal_render($main_menu_tree);
           ?>
         </div>
         <div class="clear"></div>
@@ -189,7 +184,7 @@
    <?php endif; ?>
       
     <div id="copyright">
-     <p class="copyright"><?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <?php print $site_name; ?> </p> <p class="credits"> <?php print t('Theme by'); ?>  <a href="http://www.zymphonies.com">Zymphonies</a></p>
+     <p class="copyright"><?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <?php print $site_name; ?> </p> <p class="credits"> <?php print t('Designed by'); ?>  <a href="http://www.zymphonies.com">Zymphonies</a></p>
     <div class="clear"></div>
     </div>
   </div>

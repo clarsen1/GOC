@@ -11,7 +11,7 @@ function business_responsive_theme_form_system_theme_settings_alter(&$form, &$fo
 
   $form['prof_settings'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Professional Theme Settings'),
+    '#title' => t('Business Responsive Theme'),
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,
   );

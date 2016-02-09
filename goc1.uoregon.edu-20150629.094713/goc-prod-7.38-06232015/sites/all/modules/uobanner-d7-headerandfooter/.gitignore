@@ -1,0 +1,16 @@
+#SASS config
+#config.rb
+
+#SASS Cache
+**/.sass-cache
+**/.sass-cache/*
+**.sass-cache**
+
+# OS generated files #
+######################
+._*
+.DS_Store?
+.DS_Store
+thumbs.db
+Icon?
+Thumbs.db

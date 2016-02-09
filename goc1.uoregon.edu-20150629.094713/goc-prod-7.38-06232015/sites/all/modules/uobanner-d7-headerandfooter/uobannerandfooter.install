@@ -1,0 +1,19 @@
+<?php
+
+// Implements hook_install()
+function uobannerandfooter_install() {
+  // Set the default values for the module settings variables
+  $settings = variable_get('uobannerandfooter', array());
+
+  if (!(array_key_exists('general', $settings))) {
+    $general = array('hamburger_menu' => 1, 'hamburger_menu_target' => 'main-menu');
+    $settings['general'] = $general;
+    variable_set('uobannerandfooter', $settings);
+  }
+}
+
+// Implements hook_uninstall()
+function uobannerandfooter_uninstall() {
+  // Clear the module settings variable
+  variable_del('uobannerandfooter');
+}

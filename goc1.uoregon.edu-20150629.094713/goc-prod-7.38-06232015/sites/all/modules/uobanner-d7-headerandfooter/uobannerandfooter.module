@@ -1,0 +1,718 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Standardizes UO banner and footer sections on Drupal 7 sites.
+ */
+
+// Implements hook_permissions()
+function uobannerandfooter_permission() {
+  return array(
+    'UO Banner and Footer' => array(
+      'title' => t('Administer UO Banner and Footer settings'),
+      'description' => t('Allow user to administer banner and footer settings'),
+      ),
+    );
+  }
+
+// Implements hook_menu()
+function uobannerandfooter_menu() {
+  // Module settings.
+  $items['admin/config/user-interface/uobannerandfooter'] = array(
+    'title' => 'UO Banner and Footer',
+    'description' => 'Administer UO Banner and Footer settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uobannerandfooter_admin_settings'),
+    'access arguments' => array('UO Banner and Footer'),
+    'file' => 'uobannerandfooter.admin.inc',
+    'file path' => drupal_get_path('module', 'uobannerandfooter'),
+  );
+  return $items;
+}
+
+// Implements hook_help().
+function uobannerandfooter_help($path, $arg) {
+  switch ($path) {
+    case 'admin/settings/uobannerandfooter' :
+      return t('Configure this module: Configure->User Interface->UO Banner and Footer Settings.');
+
+    case 'admin/help#uobannerandfooter':
+      $output = '<p>' . t('Configure this module: Configure->User Interface->UO Banner and Footer Settings.') . '</p>';
+      return $output;
+  }
+}
+
+// Implements hook_page_build(). 
+function uobannerandfooter_page_build(&$page) {
+  global $base_url, $base_path, $theme;
+
+  $admin_theme = variable_get('admin_theme');
+  $module_path = $base_url . '/' . drupal_get_path('module', 'uobannerandfooter');
+
+  $headerMarkup = "";
+  $hamburgerMarkup = "";
+  $ankleMarkup = "";
+  $footerMarkup = "";
+
+  $maxPageWidth = 1200;
+
+  // Utility nav links
+  $utilityLinks = "";
+
+  // Hamburger Links
+  $utilityLinksHamburger = "";
+  $hamburgerPrimaryLinks = "";
+  $hamburgerSubnavTitle = "";
+  $hamburgerSecondaryLinks = "";
+
+  // Content <section> display defaults
+  $showHeader = true;
+  $showHamburger = false;
+  $showAnkle = false;
+  $showFooter = true;
+
+  // Address values display defaults
+  $showAddress = false;
+  $showAddressOpen = "";
+  $showAddressClose = "";
+
+  // Contact Info values display defaults
+  $showContactInfo = false;
+
+  // Phone and Fax values display defaults
+  $showPhoneFaxOpen = "";
+  $showPhoneFaxClose = "";
+
+  // Social Media Link values display defaults
+  $showSocialMediaLinks = false;
+  $showSocialMediaLinksOpen = '';
+  $showSocialMediaLinksClose = '';
+
+  // Microdata
+  $showMicrodataHomeURL = '';
+  $showMicrodataAddressOpen = '';
+  $showMicrodataAddressClose = '';
+  $showMicrodataOrgOpen = '';
+  $showMicrodataOrgClose = '';
+
+  // Include home page URL as Organization microdata (this value is hidden)
+  $showMicrodataHomeURL = '<link itemprop="url" style="visibility:hidden;" itemscope="' . $GLOBALS["base_url"]  . '">';
+
+  // Return form fields as array
+  $uobannerandfooter = variable_get('uobannerandfooter', array());
+
+  if($uobannerandfooter) {  
+    
+    // Return Page Width value
+    if(!empty($uobannerandfooter['general']['custom_page_width'])) {
+      $maxPageWidth = check_plain($uobannerandfooter['general']['custom_page_width']);
+    }
+
+    $custom_page_width = "style='max-width: " . $maxPageWidth . "px; margin: 0 auto;'";
+    
+    // Propogate utility Links
+    if (array_key_exists('general', $uobannerandfooter) &&
+      array_key_exists('utility_links', $uobannerandfooter['general']) &&
+      check_plain($uobannerandfooter['general']['utility_links']) != 'none') {
+
+      $links = menu_load_links(check_plain($uobannerandfooter['general']['utility_links']));
+      foreach ($links as $link) {
+        if ($link['depth'] == 1) {
+          $utilityLinks .= '<li><a class="utility-link" href="' . url($link['link_path']) . '">' . $link['link_title'] . '</a></li>';
+        }
+      }
+      $utilityLinks = '<ul class="utility-links">' . $utilityLinks . '</ul>';
+    }
+
+    // Create Hamburger menu
+    if (array_key_exists('general', $uobannerandfooter) &&
+      array_key_exists('hamburger_menu', $uobannerandfooter['general']) &&
+      check_plain($uobannerandfooter['general']['hamburger_menu']) == true) {
+
+      $hamburger_menu = "<div id=\"uobanner-navmenu\">Navigation</div>";
+      $vars['classes_array'][] = "uobanner_sidebar";
+      $showHamburger = true;
+    } else {
+      $hamburger_menu = "";
+    }
+
+    // UO Header
+
+    if($showHeader) {
+      $headerMarkup = "
+      <section id=\"uobannerandfooter-uoheader\">
+        <div class=\"uoheader-container\" {$custom_page_width}>
+          <div class=\"uoheader-uologo-container\">
+            <a href=\"http://uoregon.edu\" rel=\"home\"><img src=\"{$module_path}/images/uo-logo@2x.png\" title=\"University of Oregon\" alt=\"University of Oregon\" width=\"200\" height=\"43\" /></a>
+          </div>
+          
+          <div class=\"uoheader-links-container\">
+            <ul class=\"uoheader-links\"><li><a href=\"http://uoregon.edu/apply\" title=\"Apply to the University of Oregon\" class=\"first\">Apply</a></li><li><a href=\"http://uoregon.edu/visit\" title=\"Visit the University of Oregon\">Visit</a></li><li><a href=\"http://giving.uoregon.edu/\" title=\"Give to the University of Oregon\">Give</a></li>
+            </ul>
+            " . $hamburger_menu . $utilityLinks . "
+          </div>
+        </div>
+      </section>";
+    }
+
+    if($showHeader && ($admin_theme != $theme)) {
+      $page['page_top']['uobannerandfooter'] = array(
+        '#markup' => "{$headerMarkup}",
+        '#weight' => -10,
+      );
+    }
+
+    // HAMBURGER MENU
+    if ($showHamburger) {
+      // Build out Hamburger utility links
+      /*if (array_key_exists('general', $uobannerandfooter) &&
+        array_key_exists('utility_links', $uobannerandfooter['general']) &&
+        check_plain($uobannerandfooter['general']['utility_links']) != 'none') {
+
+        $links = menu_load_links(check_plain($uobannerandfooter['general']['utility_links']));
+        foreach ($links as $link) {
+          if ($link['depth'] == 1) {
+            $utilityLinksHamburger .= '<dd><a class="utility-link" href="' . url($link['link_path']) . '">' . $link['link_title'] . '</a></dd>';
+            $utilityLinksHamburger = "<dl class=\"utility-nav collapsable\"><dt>Take Action</dt>" . $utilityLinksHamburger . "</dl>";
+          }
+        }
+      }*/
+
+      $utilityLinksHamburger = "
+        <dl class=\"utility-nav collapsable\"><dt>Take Action</dt>
+          <dd><a href=\"http://uoregon.edu/apply\">Apply</a></dd>
+          <dd><a href=\"http://uoregon.edu/visit\">Visit</a></dd>
+          <dd><a href=\"http://giving.uoregon.edu/\">Give</a></dd>
+        </dl>
+        ";
+
+      // Build out Hamburger main menu
+      if (array_key_exists('general', $uobannerandfooter) &&
+        array_key_exists('hamburger_menu_target', $uobannerandfooter['general']) &&
+        check_plain($uobannerandfooter['general']['hamburger_menu_target']) != 'none') {
+
+        $hamburgerMenuTarget = check_plain($uobannerandfooter['general']['hamburger_menu_target']);
+
+        // Get the links for the primary nav
+        $links = menu_tree($hamburgerMenuTarget);
+        foreach ($links as $link) {
+          if ((is_array($link)) && (array_key_exists('#href', $link)) && (array_key_exists('#title', $link))) {
+            $hamburgerPrimaryLinks .= '<li><a href="' . url($link['#href']) . '">' . $link['#title'] . '</a></li>';
+          }
+        }
+
+        // Find the current page menu item
+        $parent = menu_link_get_preferred(NULL, $hamburgerMenuTarget);
+        // Get the root parent menu of the current page
+        while ($parent['depth'] > 1) {
+          $parent = menu_link_load($parent['plid']);
+        }
+
+        // Get the links for the subnav
+        $links = menu_tree($hamburgerMenuTarget);
+        if (
+          (is_array($links)) && 
+          (array_key_exists($parent['mlid'], $links)) && 
+          (array_key_exists('#below', $links[$parent['mlid']]))
+          ) {
+          $links = $links[$parent['mlid']]['#below'];
+          foreach ($links as $link) {
+            if ((is_array($link)) && (array_key_exists('#href', $link)) && (array_key_exists('#title', $link))) {
+              $hamburgerSecondaryLinks .= '<li><a href="' . url($link['#href']) . '">' . $link['#title'] . '</a></li>';
+            }
+          }
+        }
+        
+        // The Subnav title (if applicable)
+        if (!empty($hamburgerSecondaryLinks)) {
+          $hamburgerSubnavTitle = '<h2>' . check_plain($parent['link_title']) . '</h2>';
+        }
+        $hamburgerSecondaryLinks = '<ul class="sub-nav">' . $hamburgerSecondaryLinks . '</ul>';
+      }
+
+      $hamburgerMarkup = "
+      <section id =\"uobanner-sidebar\">"
+        . $utilityLinksHamburger .
+        "<h2>Site Navigation</h2>
+        <ul class=\"site-nav\">" . $hamburgerPrimaryLinks . "</ul>"
+        . $hamburgerSubnavTitle . $hamburgerSecondaryLinks . 
+      "</section>
+      ";
+    }
+
+    // ANKLE AND FOOTER 
+    
+    // Custom Content
+    $custom_content_defaults = array(
+      'value' => '',
+      'format' => filter_default_format(),
+    );
+
+    $custom_content = variable_get('custom_content', $custom_content_defaults);
+
+    // display 'value'
+    (!empty($uobannerandfooter['general']['custom_content']))
+     ? $uobannerandfooter_custom_content = trim(check_markup($uobannerandfooter['general']['custom_content']['value'], $format_id = $uobannerandfooter['general']['custom_content']['format'], $langcode = '', $cache = FALSE))
+      : $uobannerandfooter_custom_content = '';
+ 
+    // Organization Name
+    (!empty($uobannerandfooter['contact']['org_name']))
+      ? $uobannerandfooter_contact_org_name = '<span itemprop="name"><strong>' . check_plain($uobannerandfooter['contact']['org_name']) . '</strong></span><br />'
+      : $uobannerandfooter_contact_org_name = '';
+
+    // Contact Form URL
+    (!empty($uobannerandfooter['contact']['contact_url']))
+      ? $uobannerandfooter_contact_url = '<p><a href="' . check_url($uobannerandfooter['contact']['contact_url']) . '">' . 'Contact Us' . '</a></p>'
+      : $uobannerandfooter_contact_url = '';
+
+    // Street Address
+    (!empty($uobannerandfooter['address']['address_street']))
+      ? $uobannerandfooter_address_street = '<span itemprop="streetAddress">' . check_plain($uobannerandfooter['address']['address_street']) . '</span><br />'
+      : $uobannerandfooter_address_street = '';
+
+    // Street Address 2
+    (!empty($uobannerandfooter['address']['address_street_2']))
+      ? $uobannerandfooter_address_street_2 = '<span itemprop="streetAddress">' . check_plain($uobannerandfooter['address']['address_street_2']) . '</span><br />'
+      : $uobannerandfooter_address_street_2 = '';
+
+    // City
+     (!empty($uobannerandfooter['address']['address_city']))
+      ? $uobannerandfooter_address_city = '<span itemprop="addressLocality">' . check_plain($uobannerandfooter['address']['address_city']) . '</span>'
+      : $uobannerandfooter_address_city = '';
+
+    // State
+
+    // U.S. States array
+      $us_states_list = array(
+       '' => "Choose State",
+      'AL' => "Alabama",
+      'AK' => "Alaska",
+      'AZ' => "Arizona",
+      'AR' => "Arkansas",
+      'CA' => "California",
+      'CO' => "Colorado",
+      'CT' => "Connecticut",
+      'DE' => "Delaware",
+      'DC' => "District Of Columbia",
+      'FL' => "Florida",
+      'GA' => "Georgia",
+      'HI' => "Hawaii",
+      'ID' => "Idaho",
+      'IL' => "Illinois",
+      'IN' => "Indiana",
+      'IA' => "Iowa",
+      'KS' => "Kansas",
+      'KY' => "Kentucky",
+      'LA' => "Louisiana",
+      'ME' => "Maine",
+      'MD' => "Maryland",
+      'MA' => "Massachusetts",
+      'MI' => "Michigan",
+      'MN' => "Minnesota",
+      'MS' => "Mississippi",
+      'MO' => "Missouri",
+      'MT' => "Montana",
+      'NE' => "Nebraska",
+      'NV' => "Nevada",
+      'NH' => "New Hampshire",
+      'NJ' => "New Jersey",
+      'NM' => "New Mexico",
+      'NY' => "New York",
+      'NC' => "North Carolina",
+      'ND' => "North Dakota",
+      'OH' => "Ohio",
+      'OK' => "Oklahoma",
+      'OR' => "Oregon",
+      'PA' => "Pennsylvania",
+      'RI' => "Rhode Island",
+      'SC' => "South Carolina",
+      'SD' => "South Dakota",
+      'TN' => "Tennessee",
+      'TX' => "Texas",
+      'UT' => "Utah",
+      'VT' => "Vermont",
+      'VA' => "Virginia",
+      'WA' => "Washington",
+      'WV' => "West Virginia",
+      'WI' => "Wisconsin",
+      'WY' => "Wyoming"
+      );
+
+      $address_state = variable_get('address_state', $us_states_list);
+
+     (!empty($uobannerandfooter['address']['address_state']))
+      ? $uobannerandfooter_address_state = ', <span itemprop="addressRegion">' . check_plain($uobannerandfooter['address']['address_state']) . ' </span>'
+      : $uobannerandfooter_address_state = '';
+
+    // Zip
+     (!empty($uobannerandfooter['address']['address_zip']))
+      ? $uobannerandfooter_address_zip = '<span itemprop="postalCode">' . check_plain($uobannerandfooter['address']['address_zip']) . '</span>'
+      : $uobannerandfooter_address_zip = '';
+
+    // Office
+      (!empty($uobannerandfooter['address']['address_office']))
+      ? $uobannerandfooter_address_office = '<p>Office: ' . check_plain($uobannerandfooter['address']['address_office']) . '</p>'
+      : $uobannerandfooter_address_office = '';
+
+    // Phone  
+    (!empty($uobannerandfooter['contact']['phone']))
+      ? $uobannerandfooter_phone =  '<span class="uoankle-phone-fax">P: <span itemprop="telephone">' . check_plain($uobannerandfooter['contact']['phone']) . '</span></span>'
+      : $uobannerandfooter_phone = '';
+
+    // Phone 2 
+    (!empty($uobannerandfooter['contact']['phone_2']))
+      ? $uobannerandfooter_phone_2 =  '<span class="uoankle-phone-fax uobanner-clear-both">P: <span itemprop="telephone">' . check_plain($uobannerandfooter['contact']['phone_2']) . '</span></span>'
+      : $uobannerandfooter_phone_2 = '';
+    
+    // Fax 
+    (!empty($uobannerandfooter['contact']['fax']))
+      ? $uobannerandfooter_fax =  '<span class="uoankle-phone-fax">F: <span itemprop="faxNumber">' . check_plain($uobannerandfooter['contact']['fax']) . '</span></span>'
+      : $uobannerandfooter_fax = '';
+   
+    // Email
+    if (!empty($uobannerandfooter['contact']['email'])) {
+          $uobannerandfooter_email = '<p><span itemprop="email"><a href="mailto:' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['contact']['email'])) . '">' . $uobannerandfooter['contact']['email'] . '</a></span></p>'; 
+    }
+    else {
+      $uobannerandfooter_email = '';
+    }
+
+     // Facebook URL
+    (!empty($uobannerandfooter['social']['facebook_url']))
+      ? $uobannerandfooter_facebook_url = '<span itemprop="sameAs"><a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['facebook_url'])) . '" class="socialicon-facebook" title="Facebook">Facebook</a></span>'
+      : $uobannerandfooter_facebook_url = '';
+
+    // Twitter URL
+    (!empty($uobannerandfooter['social']['twitter_url']))
+      ? $uobannerandfooter_twitter_url = '<span itemprop="sameAs"><a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['twitter_url'])) . '" class="socialicon-twitter" title="Twitter">Twitter</a></span>'
+      : $uobannerandfooter_twitter_url = '';
+
+    // YouTube URL
+    (!empty($uobannerandfooter['social']['youtube_url']))
+      ? $uobannerandfooter_youtube_url = '<span itemprop="sameAs"><a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['youtube_url'])) . '" class="socialicon-youtube" title="YouTube">YouTube</a></span>'
+      : $uobannerandfooter_youtube_url = '';
+
+    // Instagram URL
+    (!empty($uobannerandfooter['social']['instagram_url']))
+      ? $uobannerandfooter_instagram_url = '<span itemprop="sameAs"><a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['instagram_url'])) . '" class="socialicon-instagram" title="Instagram">Instagram</a></span>'
+      : $uobannerandfooter_instagram_url = '';
+
+     // LinkedIn URL
+    (!empty($uobannerandfooter['social']['linkedin_url']))
+      ? $uobannerandfooter_linkedin_url = '<span itemprop="sameAs"><a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['linkedin_url'])) . '" class="socialicon-linkedin" title="LinkedIn">LinkedIn</a></span>'
+      : $uobannerandfooter_linkedin_url = '';
+
+    // Pinterest URL
+    (!empty($uobannerandfooter['social']['pinterest_url']))
+      ? $uobannerandfooter_pinterest_url = '<span itemprop="sameAs"><a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['pinterest_url'])) . '" class="socialicon-pinterest" title="Pinterest">Pinterest</a></span>'
+      : $uobannerandfooter_pinterest_url = '';
+
+    // RSS URL
+    (!empty($uobannerandfooter['social']['rss_url']))
+      ? $uobannerandfooter_rss_url = '<a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['social']['rss_url'])) . '" class="socialicon-rss" title="RSS">RSS</a>'
+      : $uobannerandfooter_rss_url = '';
+
+    // GoogleMaps URL (<a href...>)
+    (!empty($uobannerandfooter['address']['googlemaps_url']))
+      ? $uobannerandfooter_googlemaps_url_open = '<a href="' . check_url(drupal_strip_dangerous_protocols($uobannerandfooter['address']['googlemaps_url'])) . '" title="View location on Google Maps">'
+      : $uobannerandfooter_googlemaps_url_open = '';
+
+    // GoogleMaps URL (</a>) 
+    (!empty($uobannerandfooter['address']['googlemaps_url']))
+      ? $uobannerandfooter_googlemaps_url_close= '</a>'
+      : $uobannerandfooter_googlemaps_url_close = '';
+
+    // If any address variable has a value, include opening and closing address tags
+    if($uobannerandfooter_address_street || $uobannerandfooter_address_street_2 || $uobannerandfooter_address_city || $uobannerandfooter_address_state || $uobannerandfooter_address_zip) {
+      $showAddress = true;
+      $showAddressOpen = '';
+      $showAddressClose = '';
+      // Open/Close for Postal Address microdata
+      $showMicrodataAddressOpen = '<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">';
+      $showMicrodataAddressClose = '</div>';
+    }
+
+    // Open/Close for Organization microdata
+    if(($uobannerandfooter_address_street || $uobannerandfooter_address_city || $uobannerandfooter_address_state || $uobannerandfooter_address_zip) && $uobannerandfooter_contact_org_name) {
+      $showMicrodataOrgOpen = '<div itemscope itemtype="http://schema.org/Organization">';
+      $showMicrodataOrgClose = '</div>';
+    }
+
+    // If any contact variable has a value, include opening and closing paragraph tags for that section
+    if($uobannerandfooter_email || $uobannerandfooter_contact_url)
+      {
+        $showContactInfo = true;
+      }
+
+    // If any phone or fax variable has a value, include opening and closing paragraph tags for that section
+    if($uobannerandfooter_phone || $uobannerandfooter_phone_2 || $uobannerandfooter_fax)
+      {
+        $showPhoneFaxOpen = '<p>';
+        $showPhoneFaxClose = '</p>';
+      }
+
+    // If any social media link has a value, include opening and closing paragraph tags for that section
+    if($uobannerandfooter_facebook_url || $uobannerandfooter_twitter_url || $uobannerandfooter_youtube_url || $uobannerandfooter_instagram_url || $uobannerandfooter_linkedin_url || $uobannerandfooter_pinterest_url
+      || $uobannerandfooter_rss_url)
+      {
+        $showSocialMediaLinks = true;
+        $showSocialMediaLinksOpen = '<p>';
+        $showSocialMediaLinksClose = '</p>';
+      }
+
+    // if any Ankle variable has a value, show Ankle
+    if($showAddress || $showContactInfo || $showSocialMediaLinks || $uobannerandfooter_custom_content)
+      {
+        $showAnkle = true;
+      }
+
+    if ($showAnkle) {
+      $ankleMarkup = "
+        <section id=\"uobannerandfooter-uoankle\">
+          <div class=\"uoankle-container\" {$custom_page_width}>
+            <div class=\"uoankle-custom-content\">
+              {$uobannerandfooter_custom_content}
+            </div>
+            <div class=\"uoankle-contact-info-container\">
+              <div class=\"uoankle-contact-info\">
+              {$showAddressOpen}{$showMicrodataOrgOpen}{$uobannerandfooter_contact_url}{$uobannerandfooter_googlemaps_url_open}{$uobannerandfooter_contact_org_name}{$showMicrodataAddressOpen}{$uobannerandfooter_address_street}{$uobannerandfooter_address_street_2}{$uobannerandfooter_address_city}{$uobannerandfooter_address_state}{$uobannerandfooter_address_zip}{$showMicrodataAddressClose}{$uobannerandfooter_googlemaps_url_close}{$uobannerandfooter_address_office}{$showPhoneFaxOpen}{$uobannerandfooter_phone}{$uobannerandfooter_fax}{$uobannerandfooter_phone_2}{$showPhoneFaxClose}{$uobannerandfooter_email}{$showSocialMediaLinksOpen}{$uobannerandfooter_facebook_url}{$uobannerandfooter_twitter_url}{$uobannerandfooter_youtube_url}{$uobannerandfooter_instagram_url}{$uobannerandfooter_linkedin_url}{$uobannerandfooter_pinterest_url}{$uobannerandfooter_rss_url}{$showMicrodataHomeURL}{$showSocialMediaLinksClose}{$showMicrodataOrgClose}{$showAddressClose}
+              </div>
+            </div>
+          </div>
+        </section>";
+    }
+
+    if ($showFooter) {
+      $footerMarkup = " 
+          <section id=\"uobannerandfooter-uofooter\">
+            <div class=\"uofooter-container\" {$custom_page_width}>
+              <div class=\"uofooter-links-and-logo-container\">
+                <div class=\"uofooter-links-container\">
+                  <span class=\"uofooter-link\"><a href=\"http://hr.uoregon.edu/jobs/available-positions\">Careers</a></span><span class=\"uofooter-link\"><a href=\"http://registrar.uoregon.edu/records-privacy\">Privacy Policy</a></span><span class=\"uofooter-link\"><a href=\"http://uoregon.edu/about\">About</a></span><span class=\"uofooter-link\"><a href=\"http://uoregon.edu/findpeople/\">Find People</a></span>
+                </div>
+                <div class=\"uofooter-logo-container\">
+                  <a href=\"http://uoregon.edu\"><img src=\"{$module_path}/images/footer-logo.png\" alt=\"University of Oregon\" title=\"University of Oregon\" width=\"75\" height=\"61\" /></a>
+                </div>
+                <div class=\"uofooter-copyright-container\">
+                  <span class=\"copyright\"><span class=\"copyright-symbol\">&copy;</span> <a href=\"http://uoregon.edu\">University of Oregon</a>.&nbsp;&nbsp;</span><span class=\"all-rights-reserved\">All Rights Reserved.</span>
+                </div>
+              </div>
+              <div class=\"uofooter-legal-container\">
+                <p><acronym title=\"University of Oregon\">UO</acronym> is deeply committed to diversity and inclusion and affirms and actively promotes the rights of all individuals to equal opportunity in education and employment at this institution. <acronym title=\"University of Oregon\">UO</acronym> does not tolerate any type of prohibited discrimination in any of its programs or activities, including employment. Further, it is required by Title IX and other applicable laws not to discriminate on the basis of sex. Questions regarding prohibited discrimination, including questions regarding Title IX, may be referred to the University of Oregon’s Title IX Coordinator or to the Office for Civil Rights. Title IX Coordinator Penny Daugherty, at 541-346-3123 and <a href=\"mailto:titleixcoordinator@uoregon.edu\">titleixcoordinator@uoregon.edu</a>, located at 677 E. 12th Ave., Eugene, OR 97403. U.S. Department of Education, Western Region, Office for Civil Rights, at 206-607-1600 and <a href=\"mailto:ocr.seattle@ed.gov\">ocr.seattle@ed.gov</a>.
+                </p>
+              </div>
+            </div>
+           </section>";
+    }
+
+    $pageBottomMarkup = "";
+
+    // Build the footer items out
+    if ($showAnkle) {
+      $pageBottomMarkup .= $ankleMarkup;
+    }
+    if ($showFooter) {
+      $pageBottomMarkup .= $footerMarkup;
+    }
+    if ($showHamburger) {
+      $pageBottomMarkup .= $hamburgerMarkup;
+    }
+
+    // Append footer items to page
+    if ($admin_theme != $theme) {
+      $page['page_bottom']['uobannerandfooter'] = array(
+        '#markup' => "{$pageBottomMarkup}",
+        '#weight' => 25,
+      );
+    }
+  }
+}
+
+// Validation for uobannerandfooter_admin_settings()
+function uobannerandfooter_admin_settings_validate($form, &$form_state) {
+  
+  // Check to see that page width doesn't contain any characters (e.g. px, %)
+  if (!empty($form_state['values']['uobannerandfooter']['general']['custom_page_width'])) {
+    if (!is_numeric($form_state['values']['uobannerandfooter']['general']['custom_page_width'])) {
+      form_set_error('custom_page_width', '<strong>Invalid Page Width</strong>: The page width field only accepts a numeric value.');
+    }
+  }    
+
+  // Validate closure email.
+  $email = $form_state['values']['uobannerandfooter']['contact']['email'];
+  if ((!empty($email)) && (!valid_email_address($email))) {
+    form_set_error('email', t('<strong>Invalid E-mail Address</strong>: The supplied email address appears to be invalid.'));
+  }
+
+  // Validate Phone
+  $phone_number = "";
+  if (!empty($form_state['values']['uobannerandfooter']['contact']['phone'])) {
+    $phone_number = $form_state['values']['uobannerandfooter']['contact']['phone'];
+    if ((strpos($phone_number, '(') !== false) || (strpos($phone_number, ')') !== false)) {
+      form_set_error('phone', t('<strong>Invalid Phone Format</strong>:  Parantheses are not allowed.  Please change your phone number so that it conforms with the recommended UO format.  Example: 541-346-2073'));
+    }
+  }
+
+   // Validate Phone 2
+  $phone_number = "";
+  if (!empty($form_state['values']['uobannerandfooter']['contact']['phone_2'])) {
+    $phone_number = $form_state['values']['uobannerandfooter']['contact']['phone_2'];
+    if ((strpos($phone_number, '(') !== false) || (strpos($phone_number, ')') !== false)) {
+      form_set_error('phone_2', t('<strong>Invalid Phone Format</strong>:  Parantheses are not allowed.  Please change your phone number so that it conforms with the recommended UO format.  Example: 541-346-2073'));
+    }
+  }
+
+    // Validate Fax
+  $fax_number = "";
+  if (!empty($form_state['values']['uobannerandfooter']['contact']['fax'])) {
+    $fax_number = $form_state['values']['uobannerandfooter']['contact']['fax'];
+    if ((strpos($fax_number, '(') !== false) || (strpos($fax_number, ')') !== false)) {
+      form_set_error('fax', t('<strong>Invalid Fax Format</strong>:  Parantheses are not allowed.  Please change your fax number so that it conforms with the recommended UO format.  Example: 541-346-2073'));
+    }
+  }
+
+  // Validate Contact Form URL
+  $contact_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['contact']['contact_url'])) {
+    $contact_url = $form_state['values']['uobannerandfooter']['contact']['contact_url']; 
+    // check to see if link is relative (starts with a /)
+    if (!valid_url($contact_url)) {
+      form_set_error("contact_url", t('<strong>Invalid Contact Form URL</strong>: The contact from URL entered contains invalid characters.'));
+    }
+  } 
+  
+  // Validate Google Maps URL
+  $googlemaps_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['address']['googlemaps_url'])) {
+    $googlemaps_url = $form_state['values']['uobannerandfooter']['address']['googlemaps_url'];
+    if (!valid_url($googlemaps_url, $absolute = TRUE)) {
+      form_set_error('googlemaps_url', t('<strong>Invalid Google Map URL</strong>:  This URL must begin with either http:// or https://'));
+    }
+  }
+
+  // Validate Facebook URL
+  $facebook_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['social']['facebook_url'])) {
+    $facebook_url = $form_state['values']['uobannerandfooter']['social']['facebook_url'];
+    if (!valid_url($facebook_url, $absolute = TRUE)) {
+        form_set_error('_facebook_url', t('<strong>Invalid Facebook URL</strong>:  This URL must begin with either http:// or https://'));
+    }
+  }
+
+  // Validate Twitter URL
+  $twitter_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['social']['twitter_url'])) {
+    $twitter_url = $form_state['values']['uobannerandfooter']['social']['twitter_url'];
+    if (!valid_url($twitter_url, $absolute = TRUE)) {
+        form_set_error('twitter_url', t('<strong>Invalid Twitter URL</strong>:  This URL must begin with either http:// or https://'));
+    }
+  }
+
+  // Validate YouTube URL
+  $youtube_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['social']['youtube_url'])) {
+    $youtube_url = $form_state['values']['uobannerandfooter']['social']['youtube_url'];
+    if (!valid_url($youtube_url, $absolute = TRUE)) {
+        form_set_error('youtube_url', t('<strong>Invalid YouTube URL</strong>:  This URL must begin with either http:// or https://'));
+    }
+  }
+
+  // Validate Instagram URL
+  $instagram_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['social']['instagram_url'])) {
+    $instagram_url = $form_state['values']['uobannerandfooter']['social']['instagram_url'];
+    if (!valid_url($instagram_url, $absolute = TRUE)) {
+        form_set_error('instagram_url', t('<strong>Invalid Instagram URL</strong>:  This URL must begin with either http:// or https://'));
+    }
+  }
+
+  // Validate LinkedIn URL
+  $linkedin_url = "";
+  if (!empty($form_state['values']['uobannerandfooter']['social']['linkedin_url'])) {
+    $linkedin_url = $form_state['values']['uobannerandfooter']['social']['linkedin_url'];
+    if (!valid_url($linkedin_url, $absolute = TRUE)) {
+        form_set_error('linkedin_url', t('<strong>Invalid LinkedIn URL</strong>:  This URL must begin with either http:// or https://'));
+    }
+  }
+}
+
+// Implementation of hook_preprocess_html().
+
+function uobannerandfooter_preprocess_html(&$vars) {
+  
+  global $theme, $base_url, $base_path;
+
+  $uobanner = variable_get('uobanner', array()); // returns fieldset child fields as an array
+
+  // Add hamburger menu flag class to body
+  $uobannerandfooter = variable_get('uobannerandfooter', array());
+  if (array_key_exists('general', $uobannerandfooter) && 
+    array_key_exists('hamburger_menu', $uobannerandfooter['general']) && 
+    check_plain($uobannerandfooter['general']['hamburger_menu']) == true) {
+
+    $vars['classes_array'][] = "uobanner-sidebar";
+  }
+
+/*
+Google Open Sans font
+*/
+ drupal_add_html_head_link(array('rel' => 'stylesheet', 'href' => '//fonts.googleapis.com/css?family=Open+Sans:400,300,700', 'type'  => 'text/css')); 
+
+  /*
+  FAVICONS and TOUCH ICONS 
+  */
+
+  // Default favicon for older version of IE
+  drupal_add_html_head_link(array('rel' => 'shortcut icon', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/favicon.ico', 'type'  => 'image/vnd.microsoft.icon')); 
+
+  //TOUCH ICONS for IOS and Android 
+
+  // 180x180px: <<DEFAULT>> sized to 180x180px to support retina and non-retina display.  Non-Retina displays sizes the icon down to 57x57px.
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '180x180', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-180x180.png')); 
+
+  // 57x57px: for non-Retina (@1x display) - iPhone, iPod Touch, and Android 2.1+ devices
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '57x57', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-57x57.png')); 
+
+  // 60x60px: for non-Retina iPhone on iOS7
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '60x60', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-60x60.png')); 
+
+  // 72x72px: for iPad Mini and 1st/2nd gen iPad (@1x display) on iOS 6
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '72x72', 'href' => $base_url . '/'  . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-72x72.png')); 
+
+  // 76x76px: for iPad Mini and 1st/2nd gen iPad (@1x display) on iOS 7
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '76x76', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-76x76.png'));
+
+  // 114x114px: for Retina iPhone with iOS6 or earlier
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '114x114', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-114x114.png'));
+
+  // 120x120px: for Retina iPhone with iOS7
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '120x120', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-120x120.png'));
+
+  // 144x144px: for Retina iPad with iOS6 or earlier
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '144x144', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-144x144.png'));
+
+   // 152x152px: for Retina iPad with iOS7
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '152x152', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-152x152.png'));
+
+  // 180x180px: for iPhone 6 Plus with iOS8
+  drupal_add_html_head_link(array('rel' => 'apple-touch-icon-precomposed', 'sizes' => '180x180', 'href' => $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/images/favicons/apple-touch-icon-180x180.png'));
+
+  // MS TILES for WIN8/IE11+/XBOX
+
+  // path to browserconfig.xml
+  $ms_browserconfig_path = $base_url . '/' . drupal_get_path('module', 'uobannerandfooter') . '/browserconfig.xml' ;
+
+  // load browserconfig.xml into array, which will be passed into head as meta tag
+  $meta_mstile_browserconfig = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'msapplication-config',
+        'content' => $ms_browserconfig_path,
+        )
+    );
+  
+  // drop browserconfig.xml meta tag into header
+  drupal_add_html_head($meta_mstile_browserconfig, 'ms_mstile_browserconfig');
+}

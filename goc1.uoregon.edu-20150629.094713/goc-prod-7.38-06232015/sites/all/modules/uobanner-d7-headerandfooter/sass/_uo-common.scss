@@ -1,0 +1,576 @@
+/**
+ * @file
+ * Modular Code for use Across UO Themes
+ *
+ * Adds modular sets of styles.
+ */
+
+ @import "compass/utilities/general/clearfix";
+
+/* 
+ * This value represents the spacing between grid items. 
+ * If you are using Zen grids, ensure that this value is the same as $zen-gutter-width. 
+ */
+$gutter-width:  30px;
+
+/* Width of the page content area. */
+$page-width: 1200px;
+
+/*
+ * These variables provide windows size breakpoints we use as part of cosmic. 
+ * These represent a targeted lowest value (min-width) for that particular device.
+ */
+$breakpoint-desktop-wide: 1200px;
+$breakpoint-desktop: 960px;
+$breakpoint-tablet: 660px;
+$breakpoint-small: 320px;
+$breakpoint-tiny: 240px;
+
+$sidebar-width: 270px;
+$sidebar-width-tiny: 180px;
+
+/**
+ * Grid Items ( Inspired by: http://css-tricks.com/dont-overthink-it-grids/ )
+ */
+
+[class*='grid-'] {
+  &:after {
+    /* Or @extend clearfix */
+    content: "";
+    display: table;
+    clear: both;
+  }
+  @include box-sizing(border-box);
+}
+
+/* Our grid items default to 100% width with 10px gutters on each side. */
+.grid-item {
+  float: left;
+  width: 100%;
+  margin-right: 2%;
+  margin-top: $gutter-width;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.grid-flush .grid-item {
+  margin: 0;
+}
+
+/* When the window is large, allow all the grid items to show in a single row. */
+@media all and (min-width: floor($page-width * .75)+1) {
+  @for $i from 2 through 5 {
+    .grid-#{$i}col .grid-item {
+      width: percentage(((100 - (2*($i - 1))) / $i)/100);
+
+      @for $j from 2 through $i {
+        &:nth-of-type(#{$j}) {
+          margin-top: 0;
+        }
+      }
+    }
+
+    .grid-flush.grid-#{$i}col .grid-item {
+      width: percentage((100 / $i)/100);
+    }
+    .grid-#{$i}col .grid-item:nth-of-type(#{$i}n) {
+      clear: right;
+      margin-right: 0;
+    }
+    .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+1) {
+      clear: left;
+    }
+    .grid-#{$i}col.grid-flush .grid-item {
+      margin: 0;
+    }
+
+    // 1 item grid for 2, 3, 4, 5
+    .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+1):nth-last-of-type(1) {
+      width: 100%;
+      clear: both;
+      margin-right: 0;
+    }
+    // 2 item grid for 3, 4, 5
+    @if ($i > 2) {
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+1):nth-last-of-type(2) {
+        width: 49%;
+        clear: left;
+      }
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+2):nth-last-of-type(1) {
+        width: 49%;
+        clear: right;
+        margin-right: 0;
+      }
+    }
+    // 3 item grid for 4, 5
+    @if ($i > 3) {
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+1):nth-last-of-type(3) {
+        width: 32%;
+        clear: left;
+      }
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+2):nth-last-of-type(2) {
+        width: 32%;
+      }
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+3):nth-last-of-type(1) {
+        width: 32%;
+        margin-right: 0;
+        clear: right;
+      }
+    }
+    // 4 item grid for 5
+    @if ($i > 4) {
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+1):nth-last-of-type(4) {
+        width: 23.5%;
+        clear: left;
+      }
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+2):nth-last-of-type(3) {
+        width: 23.5%;
+      }
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+3):nth-last-of-type(2) {
+        width: 23.5%;
+      }
+      .grid-#{$i}col .grid-item:nth-of-type(#{$i}n+4):nth-last-of-type(1) {
+        width: 23.5%;
+        margin-right: 0;
+        clear: right;
+      }
+    }
+  }
+}
+
+/* When the window is medium sized, display two items per row. */
+@media all and (min-width: floor($page-width * .40)+1) and (max-width: floor($page-width * .75)) {
+  .grid-item {
+    width: 49%;
+  }
+
+  .grid-flush.grid-item {
+    width: 50%;
+  }
+
+  .grid-item:nth-of-type(2) {
+    margin-top: 0;
+  }
+
+  .grid-item:nth-of-type(odd) {
+    clear: left;
+  }
+
+  .grid-item:nth-of-type(even) {
+    clear: right;
+    margin-right: 0;
+  }
+
+  .grid-item:nth-of-type(2n+1):nth-last-of-type(1) {
+    width: 100%;
+    clear: both;
+    margin-right: 0;
+  }
+}
+
+@media all and (max-width: floor($page-width * .40)) {
+  .grid-item {
+    clear: both;
+  }
+}
+
+// Vertical Multicolumn content
+@for $i from 2 through 5{
+    .grid-vert-#{$i}col {
+      -moz-column-count: $i;
+      -webkit-column-count: $i;
+      column-count: $i;
+      -webkit-column-gap: 2%;
+      -moz-column-gap: 2%;
+      column-gap: 2%;
+
+      @media all and (max-width: 681px) {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+      }
+    }
+}
+[class*='grid-vert-'] {
+  .grid-item {
+    -moz-column-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid;
+
+    margin-right: 0;
+
+    // Undo base grid item behaviors
+    width: 100%;
+    clear: none;
+  }
+}
+
+@media all and (min-width: floor($page-width * .40)+1) {
+  // 2 Column 40/60 Split Content
+  .grid-2col-40-60, .grid-2col-60-40 {
+    .grid-item:nth-child(1), .grid-item:nth-child(2) {
+      margin-top: 0;
+    }
+
+    .grid-item:nth-child(2n + 1) {
+      clear: left;
+    }
+
+    .grid-item:nth-child(2n) {
+      clear: right;
+      margin-right: 0;
+    }
+  }
+
+  .grid-2col-40-60 {
+    .grid-item:nth-child(2n + 1) {
+      width: 33%;  
+    }
+
+    .grid-item:nth-child(2n) {
+      width: 64%;
+    }
+  }
+
+  .grid-2col-60-40 {
+    .grid-item:nth-child(2n + 1) {
+      width: 64%;
+    }
+
+    .grid-item:nth-child(2n) {
+      width: 33%;
+    }
+  }
+}
+
+.grid-2col-40-60 .grid-item, .grid-2col-60-40 .grid-item {
+  width: 100%;
+}
+
+/**
+ * ETC
+ */
+
+// Mixins/partials
+%vertical-center {
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+
+/* Adding this class makes the particular object disappear on tablet/phone screen sizes. */
+.low-priority {
+  @media all and (max-width: $breakpoint-tablet - 1) {
+    display: none;
+  }
+}
+
+/* Collapsable menus. */
+@mixin collapse-style() {
+  // Negative margin trick to make menu flush with window border
+  margin-left: calc((100vw - 100%) / -2);
+  width: 100vw;
+
+  dt, dd {
+    line-height: 4em;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
+  dt {
+    cursor: pointer;
+    background: #1D1D1D;
+
+    &:after {
+      content: ' ';
+      display: block;
+      float: right;
+      margin-top: 1.75em;
+      height: 7px;
+      width: 14px;
+      background-size: 14px 7px;
+      background-image: url('../images/collapse-arrow-down-hires.png');
+    
+      .lt-ie9 & {
+        background-image: url('../images/collapse-arrow-down.png');
+      }
+    }
+  }
+
+  a {
+    width: 100%;
+    display: block;
+  }
+
+  // Theme elements when the menu is collapsed
+  &.collapsed {
+    dt:after {
+      height: 14px;
+      width: 7px;
+      background-size: 7px 14px;
+      background-image: url('../images/collapse-arrow-right-hires.png');
+      
+      .lt-ie9 & {
+        background-image: url('../images/collapse-arrow-right.png');
+      }
+    }
+
+    dd {
+      display: none;
+    }
+  }
+}
+dl.collapsable {
+  // Remove any default spacing
+  margin: 0;
+  padding: 0;
+
+  dt, dd {
+    @include box-sizing(border-box);
+    line-height: 2.25em;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  @media all and (max-width: $breakpoint-tablet - 1) {
+    @include collapse-style();
+  }
+}
+
+/* Content Badges */
+.badge {
+  @include clearfix;
+  display: block;
+
+  &>* {
+    margin-bottom: $gutter-width / 5;
+  }
+  &>*:last-child {
+    margin-bottom: 0;
+  }
+
+  .badge-label, .badge-photo, .badge-title, .badge-teaser, .badge-links {
+    margin-bottom: $gutter-width / 5;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+
+    a {
+      color: black;
+    }
+  }
+
+  .badge-block {
+    margin-bottom: $gutter-width;
+  }
+
+  .badge-label {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: bold;
+    color: #00704A;
+    text-transform: uppercase;
+  }
+
+  .badge-photo {
+    width: 100%;
+  }
+
+  .badge-photo-circular {
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 75px;
+    overflow: hidden;
+  }
+
+  .badge-photo-circular-left, .badge-photo-circular-right {
+    @extend .badge-photo-circular;
+  }
+  .badge-photo-left, .badge-photo-circular-left {
+    float: left;
+    margin-right: $gutter-width;
+  }
+  .badge-photo-right, .badge-photo-circular-right {
+    float: right;
+    margin-left: $gutter-width;
+  }
+
+  @media all and (max-width: 660px) {
+    .badge-photo-left, .badge-photo-right, .badge-photo-circular-left, .badge-photo-circular-right {
+      float: none;
+      margin: 0;
+    }
+  }
+
+  .badge-title {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333333;
+
+    a {
+      color: #333333;
+    }
+  }
+
+  .badge-subhead {
+    font-size: 16px;
+    line-height: 16px;
+    font-style: italic;
+  }
+
+  .badge-teaser {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333333;
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .badge-links {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .badge-list {
+    .label {
+      display: inline;
+      font-weight: bold;
+      color: #666666;
+    }
+
+    p {
+      display: inline;
+      margin: 0;
+    }
+  }
+
+  table {
+    width: auto !important;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  table, tr, td, th {
+    width: 0 auto !important;
+    border: 0;
+  }
+
+  thead {
+    text-align: left;
+  }
+
+  td {
+    padding-left: $gutter-width / 2;
+    padding-right: $gutter-width / 2;
+    border-left: 1px solid black;
+
+    &:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+}
+.badge-large {
+  .badge-title {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 15px;
+  }
+  .badge-teaser {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* Captioned Photos */
+.captioned-photo, .captioned-photo-noshade {
+  position: relative;
+  display: table;
+  table-layout: fixed;
+
+  a:link {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .caption {
+    @include box-sizing(border-box);
+    @include transform(translateY(-50%));
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
+    text-transform: uppercase;
+    width: 75%;
+    left: 12.5%;
+    top: 50%;
+    padding: 20px 10px;
+    color: white;
+    font-size: 1.6em;
+    line-height: 1.25em;
+    background: black;
+    background: rgba(0,0,0,.5);
+
+    a {
+      color: white;
+    }
+
+    @media all and (max-width: $breakpoint-desktop - 1) {
+      font-size: 1.4em;
+    }
+  }
+
+  img {
+    display: block;
+  }
+
+  p {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .grid-item & {
+    width: 100%;
+
+    .photo {
+      width: 100% !important;
+    }
+  }
+}
+/* The alternate display for a caption without the dark background. */
+.captioned-photo-noshade .caption {
+  background: none;
+}

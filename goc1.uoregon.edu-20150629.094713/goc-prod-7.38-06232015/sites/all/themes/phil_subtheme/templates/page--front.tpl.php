@@ -114,20 +114,11 @@
   
 
   
-  <?php if ($page['footer_first'] || $page['footer_second'] || $page['footer_third'] || $page['footer_fourth']): ?>
+  <?php if ($page['social_footer']): ?>
     <div id="footer-saran">
      <div id="footer-wrap">
-      <?php if ($page['footer_first']): ?>
-      <div class="footer-box-left"><?php print render($page['footer_first']); ?></div>
-      <?php endif; ?>
-      <?php if ($page['footer_second']): ?>
-      <div class="footer-box"><?php print render($page['footer_second']); ?></div>
-      <?php endif; ?>
-      <?php if ($page['footer_third']): ?>
-      <div class="footer-box"><?php print render($page['footer_third']); ?></div>
-      <?php endif; ?>
-      <?php if ($page['footer_fourth']): ?>
-      <div class="footer-box-right"><?php print render($page['footer_fourth']); ?></div>
+      <?php if ($page['social_footer']): ?>
+      <div class="footer-box"><?php print render($page['social_footer']); ?></div>
       <?php endif; ?>
      </div>
     </div>
@@ -136,7 +127,7 @@
   
   <!--END footer -->
   
-    <div class="disclaimer"><?php print render($page['footer']) ?></div>
+  <div class="disclaimer"><?php print render($page['footer']) ?></div>
   
   <?php if (theme_get_setting('footer_copyright') || theme_get_setting('footer_credits')): ?>
   <div class="clear"></div>
