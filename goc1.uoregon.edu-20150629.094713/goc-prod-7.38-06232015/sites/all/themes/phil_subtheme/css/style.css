@@ -29,7 +29,9 @@ time, mark, audio, video {
 
 
 body, html{
-    background: black;
+    -webkit-animation: fadeIn 500ms ease-in;
+  -moz-animation: fadeIn 500ms ease-in;
+  animation: fadeIn 500ms ease-in;
 
 }
 
@@ -107,9 +109,7 @@ body, html{
 }
 
 :not(#header-image *) {
-  -webkit-animation: fadeIn 500ms ease-in;
-  -moz-animation: fadeIn 500ms ease-in;
-  animation: fadeIn 500ms ease-in;
+ 
 }
 
 
@@ -785,6 +785,12 @@ li.sfHover > a > .sf-sub-indicator {
     transition-duration: 0.2s;
 }
 
+@media(max-width: 750px){
+  #home-quote .big-button{
+    width: 80%;
+  }
+}
+
 
 
 .main_view {
@@ -1415,6 +1421,7 @@ span.text-content span a:hover {
     height: 0;
     padding-bottom: 33.333333%;
     position: relative;
+    cursor: pointer;
 }
 
 .image img {
@@ -1460,6 +1467,8 @@ span.text-content span a:hover {
     padding-bottom: 100%;
     position:relative; 
     overflow:hidden;
+    cursor: pointer;
+
 }
 
 .ch_normal{
@@ -1485,12 +1494,16 @@ span.text-content span a:hover {
         width: 100%;
         height: auto;
         overflow-y: hidden;
+        cursor: pointer;
     }
+
+
     
     .ch_wrapper, .ch_normal, .ch_hover, .image{
         width: 100%;
         height: 0;
         padding-bottom: 25%;
+        cursor: pointer;
     }
     
     .ch_hover{
@@ -1507,10 +1520,10 @@ span.text-content span a:hover {
 }
 
 
-.contenthover { padding:20px 20px 10px 20px; }
-.contenthover, .contenthover h3 a, contenthover a { color:#FFF; }
-.contenthover h3, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0;}
-.contenthover h3{text-transform: uppercase}
+.contenthover { padding:20px 20px 10px 20px;}
+.contenthover, .contenthover h1 a, contenthover a { color:#FFF; }
+.contenthover h1, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0;}
+.contenthover h1{text-transform: uppercase}
 .contenthover a.mybutton { display:block; float:left; padding:5px 10px; background:#3c9632; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
 .contenthover a.mybutton:hover { background:#34742d }
 
@@ -1564,10 +1577,11 @@ span.text-content span a:hover {
 }
 
 .writing h1 {
-    width: 80%;
     margin: 0 auto;
     padding-top: 40px;
     padding-bottom: 40px;
+    padding-right: 15px;
+    padding-left: 15px;
     text-transform: uppercase;
     font-weight: 900;
     font-size: 40px;
@@ -1585,8 +1599,20 @@ span.text-content span a:hover {
     float: right;
 }
 
+@media(max-width: 1000px){
+  .writing .proj-info{
+      width: 65%;
+      float: right;
+  }
+}
+
+@media(max-width: 750px){
+  .writing .proj-info{
+      width: 100%;
+  }
+}
+
 .writing .proj-container{
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 15px;
@@ -1613,10 +1639,15 @@ span.text-content span a:hover {
 
 
 .writing > p {
-    width: 80%;
     margin: 0 auto;
     margin-bottom: 2em;
     max-width: 1200px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.writing > p:first-child {
+    margin-top: 2em;
 }
 
 #partners {

@@ -5,8 +5,14 @@
 	    effect:'slide',
 	    slide_speed:300,
 	    overlay_background: '#000',
-	    overlay_opacity: 0.6
+	    overlay_opacity: 0.6,
 	    });
+
+	   	$('.linker > span').hide();
+
+
+
+
         
     });
 })(jQuery);

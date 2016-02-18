@@ -50,6 +50,8 @@
 					$data.hide();
 					
 					var $ch_wrapper = $('<div>').addClass('ch_element').addClass(settings.wrapper_class).insertAfter($this);
+
+					$ch_wrapper.wrap('<a href = "' + $(".linker > span", $data).html() + '">');
 					
 					var $ch_normal = $('<div>').addClass(settings.normal_class).appendTo($ch_wrapper);
 					$this.clone().appendTo($ch_normal);
