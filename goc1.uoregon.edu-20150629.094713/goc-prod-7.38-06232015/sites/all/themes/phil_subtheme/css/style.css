@@ -653,8 +653,9 @@ li.sfHover > a > .sf-sub-indicator {
 .footer-box {
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: 10px;
   padding-top: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
   background: black;
   text-align: center;
   margin-top: 5;
@@ -1520,7 +1521,7 @@ span.text-content span a:hover {
 }
 
 
-.contenthover { padding:20px 20px 10px 20px;}
+.contenthover { padding:13px 20px 10px 20px;}
 .contenthover, .contenthover h1 a, contenthover a { color:#FFF; }
 .contenthover h1, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0;}
 .contenthover h1{text-transform: uppercase}
