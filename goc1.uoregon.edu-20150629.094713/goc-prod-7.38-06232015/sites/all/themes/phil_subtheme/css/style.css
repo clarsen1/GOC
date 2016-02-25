@@ -764,10 +764,13 @@ li.sfHover > a > .sf-sub-indicator {
 }
 
 
-#home-quote .quote{float: none;
+#home-quote .quote{
+    float: none;
     width: 90%;
     margin: 0 auto;
     float:none;
+    padding-bottom: 30px;
+    line-height: 3em;
 }
     
 #home-quote .big-button{
@@ -1552,6 +1555,9 @@ span.text-content span a:hover {
     }
 }
 
+.uoheader-uologo-container img {
+  width: auto !important;
+}
 /*-------------------------------------------*
 /* PROJECT CONTENT TYPE FORMATTING
 /*-------------------------------------------*/
@@ -1624,7 +1630,6 @@ span.text-content span a:hover {
   background-size: cover;
   height: 600px;
   position: relative;
-  float: left;
 }
 
 .writing{
@@ -1696,7 +1701,10 @@ span.text-content span a:hover {
 }
 
 .basic h2{
-    margin-left: 10%;
+    margin: 5px auto;
+    max-width: 1200px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 @media(max-width: 768px){
@@ -1721,7 +1729,6 @@ span.text-content span a:hover {
 }
 
 .form{
-    width: 80%;
     margin: 0 auto;
     max-width: 1200px;
 }
