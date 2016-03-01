@@ -750,9 +750,6 @@ li.sfHover > a > .sf-sub-indicator {
     margin: 0;
 }
 
-#home-quote span {
-    width: 30%;
-}
 
 
 #home-quote .big-button:hover{
@@ -795,10 +792,6 @@ li.sfHover > a > .sf-sub-indicator {
 
 @media(max-width: 750px){
   #home-quote .big-button{
-    width: 80%;
-  }
-
-  #home-quote span {
     width: 80%;
   }
 }
