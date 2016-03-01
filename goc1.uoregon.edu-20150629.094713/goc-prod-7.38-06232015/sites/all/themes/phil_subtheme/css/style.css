@@ -750,6 +750,10 @@ li.sfHover > a > .sf-sub-indicator {
     margin: 0;
 }
 
+#home-quote span {
+    width: 30%;
+}
+
 
 #home-quote .big-button:hover{
     background: #4E9634;
@@ -791,6 +795,10 @@ li.sfHover > a > .sf-sub-indicator {
 
 @media(max-width: 750px){
   #home-quote .big-button{
+    width: 80%;
+  }
+
+  #home-quote span {
     width: 80%;
   }
 }
@@ -1733,4 +1741,12 @@ span.text-content span a:hover {
 
 .node-webform > .form-item{
     display: none;
+}
+
+.contact-form {
+    padding-top: 66px;
+    margin: 5px auto;
+    max-width: 1200px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
